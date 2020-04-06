@@ -15,6 +15,9 @@ const exportedMethods = {
         if (!Array.isArray(notes)) {
             notes = [];
         }
+        if(!Array.isArray(comments)|!comments){
+            comments = [];
+        }
 
         const beerCollection = await beers;
 
@@ -25,6 +28,7 @@ const exportedMethods = {
             malt: malt,
             hops: hops,
             notes: notes,
+            comments: comments,
             _id: uuid()
         };
 
@@ -49,5 +53,24 @@ const exportedMethods = {
 
         if(!beer) throw "Beer not found";
         return beer;
+    },
+
+    async removeBeer(id) {
+        const beerCollection = await beers();
+        let beer = null;
+        try {
+            beer = await this.getBeerById(id);
+        }catch (e) {
+            console.log(e);
+            return;
+        }
+        const deletionInfo = await beerCollection.removeOne({_id: id});
+        if (deletionInfo.deletedCount === 0) {
+            throw `Could not delete beer with id of ${id}`;
+        }
+        
+        // need to remove this beer from reviews and users when deleting it
+        return true;
+
     }
 }
