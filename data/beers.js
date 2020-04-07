@@ -72,5 +72,37 @@ const exportedMethods = {
         // need to remove this beer from reviews and users when deleting it
         return true;
 
+    },
+
+    async updateBeer(id, updatedBeer){
+        const beerCollection = await beers();
+
+        const updatedBeerData = {};
+
+        if (updatedBeer.name){
+            updatedBeerData.name = updatedBeer.name;
+        }
+        if (updatedBeer.type){
+            updatedBeerData.type = updatedBeer.type;
+        }
+        if (updatedBeer.abv){
+            updatedBeerData.abv = updatedBeer.abv;
+        }
+        if (updatedBeer.malt){
+            updatedBeerData.malt = updatedBeer.malt;
+        }
+        if (updatedBeer.hops){
+            updatedBeerData.hops = updatedBeer.hops;
+        }
+        if (updatedBeer.notes){
+            updatedBeerData.notes = updatedBeer.notes;
+        }
+        if (updatedBeer.comments){
+            updatedBeerData.comments = updatedBeer.comments;
+        }
+
+        await beerCollection.updateOne({_id: id}, {$set: updatedBeerData});
+
+        return await this.getBeerById(id);
     }
 }
