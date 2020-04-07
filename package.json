@@ -1,0 +1,26 @@
+{
+  "name": "beertracker",
+  "version": "1.0.0",
+  "description": "A beer tracking webapp for the final project of CS 546",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "seed": "node ./tasks/seed.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brettweiss2/beerTracker.git"
+  },
+  "author": "Brett Weiss, Andy Nguyen, Kai Chen, Haohao Li",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/brettweiss2/beerTracker/issues"
+  },
+  "homepage": "https://github.com/brettweiss2/beerTracker#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.3",
+    "mongodb": "^3.5.5"
+  }
+}
