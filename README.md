@@ -1,7 +1,7 @@
 # beerTracker
 a beer tracking webapp for CS 546 at Stevens Institute of Technology 
 
-Here are our mock ups for the beer tracking web app made is Balsamiq Mockups 3
+Here are our mock ups for the beer tracking web app made in Balsamiq Mockups 3
 
 Home Page
 ![Home Page](https://github.com/brettweiss2/beerTracker/blob/master/Mockups/Home%20Page.png)
