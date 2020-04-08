@@ -1,0 +1,59 @@
+<section>
+
+{{#each beers}}
+{{name}}
+{{/each}}
+
+
+    <form  action="/beers" method="POST" class="new-post-form">
+    <label>
+      Beer name
+      <input type="text" name="name" placeholder="Beer Name"  value="{{beer.name}}" class="full-width-input"/>
+    </label>
+
+    <label>
+      Beer type
+      <input type="text" name="type" placeholder="Type"  value="{{beer.type}}" class="full-width-input"/>
+    </label>
+
+    <label>
+      Alcohol By Volume
+      <input type="number" name="abv" placeholder="Abv"  value="{{beer.abv}}" class="full-width-input"/>
+    </label>
+
+    <label>
+          Beer malt
+      <input type="text" name="malt" placeholder="malt"  value="{{beer.malt}}" class="full-width-input"/>
+    </label>
+
+    <label>
+      Beer hop
+      <input type="text" name="hops" placeholder="hops"  value="{{beer.hop}}" class="full-width-input"/>
+    </label>
+
+
+    <label>
+      Notes
+      <input type="text" name="notes" placeholder="notes"  value="{{beer.notes}}" class="full-width-input"/>
+    </label>
+
+    <label>
+      Comments
+      <input type="text" name="comments" placeholder="comment"  value="{{beer.commments}}" class="full-width-input"/>
+    </label>
+
+    <button type="submit">Create New Post</button>
+      </form>
+
+
+
+       {{#if hasErrors}}
+  <ul class="error-list">
+    {{#each errors}}
+    <li>
+      {{this}}
+    </li>
+    {{/each}}
+  </ul>
+  {{/if}} 
+</section>
