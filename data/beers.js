@@ -9,8 +9,8 @@ module.exports = {
      * @param {string} name 
      * @param {string} type 
      * @param {number} abv between 0 and 100
-     * @param {string} malt 
-     * @param {string} hops 
+     * @param {Array} malt 
+     * @param {Array} hops 
      * @param {string} notes
      * @returns the new beer
      */
@@ -26,8 +26,8 @@ module.exports = {
         if (typeof type !== "string") throw new Error("type must be a string");
         if (typeof abv !== "number") throw new Error("abv must be a number");
         if (abv < 0 || abv > 100) throw new Error("abv must be between 0 and 100")
-        // if (!Array.isArray(malt) || malt.length <= 0) throw new Error('malt must be a non-empty array');
-        // if (!Array.isArray(hops) || hops.length <= 0) throw new Error('hops must be a non-empty array');
+        if (!Array.isArray(malt) || malt.length <= 0) throw new Error('malt must be a non-empty array');
+        if (!Array.isArray(hops) || hops.length <= 0) throw new Error('hops must be a non-empty array');
         if (typeof notes !== "string") throw new Error("notes must be a string");
 
         const beerCollection = await beers();
