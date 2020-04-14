@@ -70,6 +70,10 @@ router.post('/', async (req, res) => {
 	}
 
 	try {
+
+		beerPost.hops = beerPost.hops.split(",")
+		
+		beerPost.malt = beerPost.malt.split(",")
 		beerPost.abv = parseInt(beerPost.abv)
 		const newBeer = await beerData.addBeer(
 			beerPost.name,
