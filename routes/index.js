@@ -6,7 +6,7 @@ const constructorMethod = (app) => {
     // app.use('/users', userRoutes);
 
     app.get('/',(req, res) =>{
-        res.render('beers/index');
+        res.render('home/index');
     })
 
 
