@@ -1,5 +1,6 @@
 const beerRoutes = require('./beers');
 const userRoutes = require('./users');
+const signUpLoginRoutes = require('./signUpLogin')
 
 const constructorMethod = (app) => {
 	app.use('/beers', beerRoutes);
@@ -7,6 +8,10 @@ const constructorMethod = (app) => {
 
     app.get('/',(req, res) =>{
         res.render('home/index');
+    })
+
+    app.get('/signUpLogin',(req, res) =>{
+        res.render('signUpLogin/index');
     })
 
 
