@@ -14,8 +14,6 @@ app.set('view engine', 'handlebars');
 
 configRoutes(app);
 
-123456
-
 app.listen(3000, () => {
 	console.log('beerTracker routes will be running on http://localhost:3000');
 });
