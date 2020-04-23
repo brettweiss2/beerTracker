@@ -9,7 +9,7 @@ const main = async () => {
 	await db.dropDatabase();
 
     //users
-    let brett = await users.addUser("bweiss@stevens.edu", "password", "Brett", "Weiss", "Pine Beach", "New Jersey", "USA");
+    let brett = await users.addUser("bweiss@stevens.edu", "pw", "Brett", "Weiss", "Pine Beach", "New Jersey", "USA");
     let john = await users.addUser("john@smith.com", "pw", "John", "Smith", "NYC", "NY", "USA");
     let jane = await users.addUser("jane@doe.com", "pw", "Jane", "Doe", "Austin", "TX", "USA");
     let steve = await users.addUser("steve@wilkos.com", "pw", "Steve", "Wilkos", "Madison", "WI", "USA");
