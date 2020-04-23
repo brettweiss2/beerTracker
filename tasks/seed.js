@@ -162,15 +162,6 @@ const main = async () => {
         "Clean finish"
     );
 
-    let clearskies = await beers.addBeer(
-        "title", 
-        "type", 
-        5.8, 
-        ["Pilsen", "Carapilsen"], 
-        ["Simcoe", "Centennial"], 
-        "notes"
-    );
-
     let fattire = await beers.addBeer(
         "Fat Tire", 
         "Amber Ale", 
@@ -248,7 +239,90 @@ const main = async () => {
     await beers.addComment(trippel._id.toString(), jane._id.toString(), "My favorite beer");
 
     //reviews
-    await reviews.addReview(brett._id.toString(), smonkey._id.toString(), 5, "strong and tastes great");
+    await reviews.addReview(brett._id.toString(), smonkey._id.toString(), 5, "This is the best beer out there. The sour taste is for sure an aquired taste, but I find it delicious and strong enough to just sip.");
+    await reviews.addReview(brett._id.toString(), gmonkey._id.toString(), 2.5, "I don't really like this too much. Too bitter.");
+    await reviews.addReview(brett._id.toString(), tmonkey._id.toString(), 4, "tart and light");
+    await reviews.addReview(brett._id.toString(), twmonkey._id.toString(), 2, "Not a fan");
+    await reviews.addReview(john._id.toString(), easyringer._id.toString(), 4.5, "Easy to drink, really good for the summer");
+    await reviews.addReview(john._id.toString(), classic._id.toString(), 4, "A real classic beer as the name says. Belongs in a black can with white letters that read 'BEER'");
+    await reviews.addReview(john._id.toString(), smonkey._id.toString(), 1, "This is disgusting. Sour is not for me, it hurts to drink.");
+    await reviews.addReview(john._id.toString(), nobrainer._id.toString(), 4.9, "A really good beer if you like a classic hoppy taste.");
+    await reviews.addReview(jane._id.toString(), smonkey._id.toString(), 3.9, "Not bad. I like how strong it is. Definitely can only have it once in a while.");
+    await reviews.addReview(jane._id.toString(), easyringer._id.toString(), 4.2, "You can pound these at a summer BBQ.");
+    await reviews.addReview(jane._id.toString(), cloudwalker._id.toString(), 2, "Bitter and hard to drink. Not for me.");
+    await reviews.addReview(jane._id.toString(), hopdevil._id.toString(), 1, "Pretty gross to me. I guess I don't really like a hoppy taste.");
+    await reviews.addReview(steve._id.toString(), classic._id.toString(), 3, "I could take it or leave it. Nothing special.");
+    await reviews.addReview(steve._id.toString(), dirtwolf._id.toString(), 4, "What a unique taste, I really enjoyed it! However, I do not think I could have more than 2 of these in one sitting. It wrecks your pallete.");
+    await reviews.addReview(steve._id.toString(), primapills._id.toString(), 4.4, "A sharp taste that really gets your tastbuds going without being overwhelming.");
+    await reviews.addReview(steve._id.toString(), hopdevil._id.toString(), 5, "The name doesn't lie, you have to be a hop lover like me to love this beer!");
+    await reviews.addReview(justin._id.toString(), tripelhorse._id.toString(), 4.5, "You can taste the unique blend of spices in this beer. I really enjoy it. But be careful, 10% ABV sneaks up on you!");
+    await reviews.addReview(justin._id.toString(), hipczech._id.toString(), 2.5, "Tastes strange to me. Not really a fan but I don't mind having a few of them.");
+    await reviews.addReview(justin._id.toString(), hippotizing._id.toString(), 3.8, "Very unique taste. I enjoyed it but I don't see it as a staple beverage for me.");
+    await reviews.addReview(justin._id.toString(), riverhorseIPA._id.toString(), 4.8, "This is my favorite IPA. Something about it hits just right!");
+    await reviews.addReview(phil._id.toString(), tripelhorse._id.toString(), 5, "This one knocks it out of the park. Such a tasty blend of spices in a Belgian Style Tripel. Strong so you only need 2 or 3.");
+    await reviews.addReview(phil._id.toString(), mountain._id.toString(), 2, "Pretty bland and light. Tastes watered down in a way.");
+    await reviews.addReview(phil._id.toString(), trippel._id.toString(), 5, "I don't have a hard time understanding why this is an award winning beer!");
+    await reviews.addReview(phil._id.toString(), riverhorseIPA._id.toString(), 1.5, "Too bitter for me.");
+    await reviews.addReview(mike._id.toString(), clearskies._id.toString(), 1, "I did not really enjoy this beer. Not going to drink it again.");
+    await reviews.addReview(mike._id.toString(), dirtwolf._id.toString(), 2, "Too much going on in this beer.");
+    await reviews.addReview(mike._id.toString(), voodoo._id.toString(), 4.5, "I really like this classic IPA. Definitely looking for more like it.");
+    await reviews.addReview(mike._id.toString(), fattire._id.toString(), 5, "This beer belongs in a museum. I love it! Really enjoyable.");
+
+    await users.updateUser(
+        brett._id.toString(),
+        {
+            favoriteBeers: [smonkey._id.toString(), tmonkey._id.toString()],
+            following: [justin._id.toString(), mike._id.toString()]
+        }
+    );
+
+    await users.updateUser(
+        john._id.toString(),
+        {
+            favoriteBeers: [nobrainer._id.toString(), easyringer._id.toString(), classic._id.toString()],
+            following: [steve._id.toString(), brett._id.toString()]
+        }
+    );
+
+    await users.updateUser(
+        jane._id.toString(),
+        {
+            favoriteBeers: [smonkey._id.toString(), easyringer._id.toString()],
+            following: [john._id.toString(), steve._id.toString()]
+        }
+    );
+
+    await users.updateUser(
+        steve._id.toString(),
+        {
+            favoriteBeers: [hopdevil._id.toString()],
+            following: [john._id.toString(), jane._id.toString()]
+        }
+    );
+
+    await users.updateUser(
+        justin._id.toString(),
+        {
+            favoriteBeers: [tripelhorse._id.toString(), riverhorseIPA._id.toString()],
+            following: [phil._id.toString(), mike._id.toString()]
+        }
+    );
+
+    await users.updateUser(
+        phil._id.toString(),
+        {
+            favoriteBeers: [tripelhorse._id.toString(), trippel._id.toString()],
+            following: [steve._id.toString(), jane._id.toString(), john._id.toString()]
+        }
+    );
+
+    await users.updateUser(
+        mike._id.toString(),
+        {
+            favoriteBeers: [voodoo._id.toString(), fattire._id.toString()],
+            following: [justin._id.toString(), brett._id.toString()]
+        }
+    );
 
 	console.log('Done seeding database');
 	await db.serverConfig.close();
