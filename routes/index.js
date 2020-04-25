@@ -14,6 +14,10 @@ const constructorMethod = (app) => {
         res.render('signUpLogin/index');
     })
 
+    app.get('/beersList',(req, res) =>{
+        res.render('beersList/index');
+    })
+
 
 	app.use('*', (req, res) => {
 		res.sendStatus(404);

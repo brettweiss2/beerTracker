@@ -77,6 +77,7 @@ body
   .search_box{
     width: 50%;
     position: relative;
+    float: left;
   }
   
   .search_box input[type="text"]{
@@ -347,4 +348,155 @@ body
   .signUpLogin .container.right-panel-active .overlay-right {
     transform: translateX(20%);
   }
+
+  /* beersList */
+  .container-main {
+    width: 1200px;
+    height: 100%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-top: 30px;
+    z-index: 100;
+    color: rgba(0,0,0,0.9)
+  }
+  .beersList .beers-list-query {
+    height: 60px;
+    line-height: 60px;
+  }
+  .beersList .beers-list-query .search-symbol {
+    display: inline-block;
+    width: 25%;
+    text-align: center;
+  }
+  .beersList .beers-list-query .search-btn {
+    width: 23%;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    background-color: #7CCD7C;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 80ms ease-in;
+
+  }
+  .beersList .search_box input[type="text"]{
+    padding: 15px;
+  }
+  .beersList .beerList-common {
+    min-height: 684px;
+    background-color: #fff;
+    border-radius: 10px;
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+        0 10px 10px rgba(0,0,0,0.22);
+    padding: 30px;
+    box-sizing: border-box;
+  }
+  .beersList .beersList-left {
+    float: left;
+    width: 68%;
+    
+  }
+  .beersList .beersList-right {
+    float: right;
+    width: 28%;
+  }
+  .beersList .beers-list-content {
+    border: 1px solid #333;
+    border-radius: 10px;
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+        0 10px 10px rgba(0,0,0,0.22);
+  }
+  .beersList .beers-list-content .result-desc {
+    line-height: 40px;
+    font-size: 20px;
+    padding: 0 15px;
+  }
+  .beersList .beer-item-box {
+    padding: 15px;
+    border-bottom: 1px solid #000000;
+  }
+  .beersList .beer-item-box:first-child {
+    padding-top: 0;
+  }
+  .beersList .beers-list-content .beer-item-box .beer-left{
+    float: left;
+    width: 50%;
+  }
+  .beersList .beers-list-content .beer-item-box .beer-right{
+    float: right;
+    width: 50%;
+  }
+  .beersList .beer-item-box .beer-filed {
+    height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+  }
+  .beersList .beersList-right .top-title {
+    font-size: 20px;
+    text-align: center;
+    line-height: 40px;
+    border-bottom: 1px solid #333;
+  }
+
+
+
+
+
+
+  .clearfix:after { 
+    display:block; 
+    content:' '; 
+    clear:both; 
+  } 
+  .clearfix { 
+    *zoom:1; 
+  }
+
+
+  
+  /* 公共样式 */
+  .page-turner {
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    height: 40px;
+    line-height: 40px;
+  }
+  .page-turner span {
+    display: inline-block;
+    width: 30px;
+  }
+  .page-turner .pre , .page-turner .next {
+    cursor: pointer;
+  }
+  .page-turner .btn:hover{
+    color: #910a00;
+  }
+  .main-yang {
+    width: 100%;
+    min-height: 684px;
+    overflow-y: auto;
+    z-index: 300;
+    position: relative;
+  }
+  /* 清除默认样式 */
+  ul,li{ padding:0;margin:0;list-style:none}
+  .strong {
+    font-weight: bold;
+  }
+
+  button:active {
+    transform: scale(0.95);
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  button.ghost {
+    background-color: transparent;
+    border-color: #FFFFFF;
+  }
+
   

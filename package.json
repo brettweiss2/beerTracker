@@ -19,10 +19,8 @@
   },
   "homepage": "https://github.com/brettweiss2/beerTracker#readme",
   "dependencies": {
-    "bootstrap": "^4.4.1",
     "express": "^4.17.1",
     "express-handlebars": "^4.0.3",
-    "mongodb": "^3.5.5",
-    "nodemon": "^2.0.3"
+    "mongodb": "^3.5.5"
   }
 }

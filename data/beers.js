@@ -38,7 +38,8 @@ module.exports = {
             malt: malt,
             hops: hops,
             notes: notes,
-            comments: []
+            comments: [],
+            reviews: []
         }
 
         const insertInfo = await beerCollection.insertOne(newBeer);
@@ -94,7 +95,7 @@ module.exports = {
      * Updates beer by id with the supplied data. Elements of data with names that
      * do not exist in the defined collection will be ignored.
      * @param {string} id 
-     * @param {Object} data {name, type, abv, malt, hops, notes}
+     * @param {Object} data {name, type, abv, malt, hops, notes, reviews}
      */
     async updateBeer(id, data) {
         if (!id) throw new Error("Must provide the beer's ID");
@@ -124,6 +125,11 @@ module.exports = {
             if (!Array.isArray(data.hops) || data.hops.length <= 0) 
                 throw new Error('updated hops must be a non-empty array');
             updatedBeer.hops = data.hops;
+        }
+        if (data.reviews) {
+            if (!Array.isArray(data.reviews) || data.reviews.length <= 0) 
+                throw new Error('updated reviews must be a non-empty array');
+            updatedBeer.reviews = data.reviews;
         }
         if (data.notes) {
             if (typeof data.notes !== "string") throw new Error("updated notes must be a string");
