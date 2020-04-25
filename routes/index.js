@@ -18,6 +18,10 @@ const constructorMethod = (app) => {
         res.render('beersList/index');
     })
 
+    app.get('/userProfile',(req, res) =>{
+        res.render('userProfile/index');
+    })
+
 
 	app.use('*', (req, res) => {
 		res.sendStatus(404);

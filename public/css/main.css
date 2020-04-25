@@ -412,10 +412,7 @@ body
     font-size: 20px;
     padding: 0 15px;
   }
-  .beersList .beer-item-box {
-    padding: 15px;
-    border-bottom: 1px solid #000000;
-  }
+  
   .beersList .beer-item-box:first-child {
     padding-top: 0;
   }
@@ -427,16 +424,32 @@ body
     float: right;
     width: 50%;
   }
-  .beersList .beer-item-box .beer-filed {
-    height: 30px;
-    line-height: 30px;
-    font-size: 16px;
+
+  .userProfile .userProfile-left {
+    float: left;
+    width: 68%;
   }
-  .beersList .beersList-right .top-title {
-    font-size: 20px;
-    text-align: center;
-    line-height: 40px;
-    border-bottom: 1px solid #333;
+
+  .userProfile .userProfile-right {
+    float: right;
+    width: 28%;
+  }
+
+  .userProfile .userProfile-left .user-info {
+    height: 100px;
+    border: 1px solid #333;
+    border-radius: 10px;
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+        0 0 0 rgba(0,0,0,0.22);
+  }
+
+  .userProfile .userProfile-left .recent-activity-list {
+    height: 500px;
+    border: 1px solid #333;
+    border-radius: 10px;
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+        0 10px 10px rgba(0,0,0,0.22);
+    margin-top: 20px;
   }
 
 
@@ -481,6 +494,24 @@ body
         0 10px 10px rgba(0,0,0,0.22);
     padding: 30px;
     box-sizing: border-box;
+  }
+
+  .beer-item-box {
+    padding: 15px;
+    border-bottom: 1px solid #000000;
+  }
+
+  .beer-item-box .beer-filed {
+    height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+  }
+
+  .top-title {
+    font-size: 20px;
+    text-align: center;
+    line-height: 40px;
+    border-bottom: 1px solid #333;
   }
 
 
