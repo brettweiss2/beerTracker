@@ -508,14 +508,45 @@ body
   .dashboard .recent-content .recent-reviews{
     width: 48%;
     height: 100%;
+    padding: 0 20px 20px 20px;
   }
   .dashboard .recent-content .recent-beer-submissions{
     width: 48%;
     height: 100%;
+    padding: 0 20px 20px 20px;
+    position: relative;
   }
   .dashboard .recent-beer-submissions .diamond {
     top: 5px;
     margin-left: 10px;
+  }
+  .dashboard .recent-reviews .recent-review-item {
+    line-height: 20px;
+    font-weight: 600;
+    font-style: italic;
+    padding: 15px 0;
+    border-bottom: 1px solid #333;
+  }
+  .dashboard .recent-reviews {
+    position: relative; 
+  }
+
+  .dashboard .recent-reviews  .page-turner, .dashboard .recent-beer-submissions .page-turner {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .dashboard .submissions-list .beer-item-box {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .dashboard .submissions-list .beer-item-box .beer-grade {
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 1.8;
   }
 
 
