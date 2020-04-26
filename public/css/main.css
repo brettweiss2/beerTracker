@@ -442,6 +442,7 @@ body
       box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
         0 0 0 rgba(0,0,0,0.22);
   }
+  
 
   .userProfile .userProfile-left .recent-activity-list {
     height: 500px;
@@ -495,6 +496,26 @@ body
   .userProfile .activity-item .user-name {
     font-size: 18px;
     line-height: 36px;
+  }
+
+  /* dashboard  style*/
+  .dashboard .recent-content {
+    display: flex;
+    justify-content: space-between;
+    height: 500px;
+    margin-top: 20px
+  }
+  .dashboard .recent-content .recent-reviews{
+    width: 48%;
+    height: 100%;
+  }
+  .dashboard .recent-content .recent-beer-submissions{
+    width: 48%;
+    height: 100%;
+  }
+  .dashboard .recent-beer-submissions .diamond {
+    top: 5px;
+    margin-left: 10px;
   }
 
 
@@ -562,7 +583,9 @@ body
 		/**是内部两个子元素位置参考的基石**/
     position: relative; 
     height: 20px;
-    width: 20px;
+    width: 18px;
+    display: inline-block;
+
   }
 
   .arrow-up{
@@ -586,9 +609,14 @@ body
     border-right-color:transparent;
     
     position:absolute;
+    transition: transform 80ms ease-in;
     
     top:0;
+    left: 0;
     
+    }
+    .arrow-up:active, .arrow-bottom:active{
+      transform: scale(0.9);
     }
     
     .arrow-bottom{
@@ -614,7 +642,16 @@ body
       position:absolute;
       
       bottom:0;
+      left: 0;
+      transition: transform 80ms ease-in;
     
+    }
+
+    .box-border {
+      border: 1px solid #333;
+      border-radius: 10px;
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+        0 10px 10px rgba(0,0,0,0.22);
     }
 
 
