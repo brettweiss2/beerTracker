@@ -22,6 +22,10 @@ const constructorMethod = (app) => {
         res.render('userProfile/index');
     })
 
+    app.get('/dashboard',(req, res) =>{
+        res.render('dashboard/index');
+    })
+
 
 	app.use('*', (req, res) => {
 		res.sendStatus(404);
