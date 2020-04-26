@@ -26,6 +26,10 @@ const constructorMethod = (app) => {
         res.render('dashboard/index');
     })
 
+    app.get('/beerPage',(req, res) =>{
+        res.render('beerPage/index');
+    })
+
 
 	app.use('*', (req, res) => {
 		res.sendStatus(404);
