@@ -536,6 +536,56 @@ body
     display: flex;
   }
 
+  .beerPage .recent-activity-list .activity-list-title {
+    border: none;
+  }
+
+  .beerPage  .leave-review-box {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .beerPage  .leave-review-box .text-content {
+    width: 70%;
+  }
+  .beerPage  .text-content textarea{
+    width: 100%;
+    font-size: 14px;
+    line-height: 24px;
+    padding: 2px;
+  }
+
+  .beerPage  .leave-review-box .handle-box {
+    width: 27%;
+  }
+  .beerPage .handle-box .rate-box {
+    width: 100px;
+    line-height: 24px;
+    border: 1px solid #333;
+    display: flex;
+    border-radius: 4px;
+  }
+
+  .beerPage .handle-box .rate-box .rate-num {
+    width: 80%;
+    text-align: right;
+    border-right: 1px solid #333;
+    padding-right: 5px;
+  }
+
+  .beerPage .handle-box .rate-box .diamond {
+    height: 24px;
+  }
+  .beerPage .handle-box .rate-box .diamond .arrow-up{
+    top: 2px;
+    cursor: pointer;
+  }
+  .beerPage .handle-box .rate-box .diamond .arrow-bottom{
+    bottom: 2px;
+    cursor: pointer;
+  }
+
+
 
 
 
@@ -723,6 +773,10 @@ body
   button.ghost {
     background-color: transparent;
     border-color: #FFFFFF;
+  }
+
+  textarea:focus {
+    outline: none;
   }
 
   

@@ -1,11 +1,8 @@
-<script>
-	window.onload=function(){
-		
-	}
 
-</script>
 
+<script type="text/template" id="amz-tpl">
 <div>
+  
     <div id="bg">
       <img src="../../public/assets/homepic.jpg">
     </div>
@@ -27,30 +24,30 @@
         </div>
         <div class="recent-activity-list">
           <div class="activity-list-title strong">Leave A Review</div>
-          <div>
-            <div>
-              <textarea name="" id="" cols="30" rows="10"></textarea>
+          <div class="leave-review-box">
+            <div class="text-content">
+              <textarea name="" id="" rows="5"></textarea>
             </div>
-            <div>
-              <div>
-                <span>3/5</span>
+            <div class="handle-box">
+              <div class="rate-box">
+                {{content.rateNum}}
+                {{rateNum}}
+                {{title}}
+                {{this.data}}
+                <div class="rate-num">{{rateNum}}/5</div>
                 <div class="diamond">
-                  <span class="arrow-up"></span>
-                  <span class="arrow-bottom"></span>
+                  <span class="arrow-up" id="arrowUp"></span>
+                  <span class="arrow-bottom" id="arrowDown"></span>
                 </div>
               </div>
+              {{#each this}}
+                  <p>{{rateNum}}:{{rateNum}}</p>
+              {{/each}}
+
               <button>Submit Review</button>
             </div>
           </div>
           <ul>
-            <li class="common-activity-item">
-              <div class="desc">This is the best beer out there. The sour taste is for sure an aquired taste, but I find it delicious and strong enough to just sip.</div>
-              <div class="user-name">By: User Name</div>
-            </li>
-            <li class="common-activity-item">
-              <div class="desc">This is the best beer out there. The sour taste is for sure an aquired taste, but I find it delicious and strong enough to just sip.</div>
-              <div class="user-name">By: User Name</div>
-            </li>
             <li class="common-activity-item">
               <div class="desc">This is the best beer out there. The sour taste is for sure an aquired taste, but I find it delicious and strong enough to just sip.</div>
               <div class="user-name">By: User Name</div>
@@ -98,3 +95,42 @@
   </div>
    
 </div>
+
+</script>
+
+<script>
+  
+
+
+  var rateNum = 3;
+  var $tpl = document.getElementById('amz-tpl');
+     console.log('&&&&&', $tpl)
+      var source = $tpl.innerHTML;
+      var template = Handlebars.compile(source);
+      var context = {rateNum: 3, title: 'juiuiu'};
+      console.log('*****', template)
+      var html = template(context);
+      document.getElementById('app').innerHTML = html;
+      console.log('UUUU', this)
+	window.onload=function(){
+     
+
+
+
+    const arrowUpBtn = document.getElementById('arrowUp');
+    const arrowDownBtn = document.getElementById('arrowDown');
+    arrowUpBtn.addEventListener('click', () => {
+			if (rateNum < 5) {
+        rateNum += 0.5
+      }
+		});
+
+    arrowDownBtn.addEventListener('click', () => {
+			if (rateNum > 0) {
+        rateNum -= 0.5
+      }
+		});
+		
+	}
+
+</script>
