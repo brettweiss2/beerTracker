@@ -435,7 +435,7 @@ body
     width: 28%;
   }
 
-  .userProfile .userProfile-left .user-info {
+  .userProfile .userProfile-left .user-info, .beerPage .userProfile-left .beer-info {
     /* height: 120px; */
     border: 1px solid #333;
     border-radius: 10px;
@@ -455,19 +455,7 @@ body
   .userProfile .userProfile-left .user-info {
     padding: 10px 20px;
   }
-
-  .userProfile .userProfile-left .user-info ul{
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    
-  }
-  .userProfile .userProfile-left .user-info li {
-    width: 50%;
-    height: 32px;
-    line-height: 32px;
-  }
-
+  
   .userProfile .userProfile-left .user-info .btn {
     padding: 5px;
     background-color: #7CCD7C;
@@ -484,19 +472,7 @@ body
 
   }
 
-  .userProfile .recent-activity-list .activity-item {
-    line-height: 20px;
-    padding: 15px 0 5px 0;
-    border-bottom: 1px solid #333;
-  }
-  .userProfile .activity-item .desc {
-    font-weight: 600;
-    font-style: italic;
-  }
-  .userProfile .activity-item .user-name {
-    font-size: 18px;
-    line-height: 36px;
-  }
+  
 
   /* dashboard  style*/
   .dashboard .recent-content {
@@ -547,6 +523,17 @@ body
     font-size: 28px;
     font-weight: bold;
     line-height: 1.8;
+  }
+
+  /* beer page */
+  .userProfile .userProfile-left .beer-info {
+    padding: 10px 20px;
+  }
+
+  .beerPage .userProfile-left .beer-info li.taste-profile {
+    width: 100%;
+    line-height: 32px;
+    display: flex;
   }
 
 
@@ -684,6 +671,32 @@ body
       box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
         0 10px 10px rgba(0,0,0,0.22);
     }
+
+  .common-info ul{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    
+  }
+  .common-info li {
+    width: 50%;
+    height: 32px;
+    line-height: 32px;
+  }
+
+  .common-activity-item {
+    line-height: 20px;
+    padding: 15px 0 5px 0;
+    border-bottom: 1px solid #333;
+  }
+  .common-activity-item .desc {
+    font-weight: 600;
+    font-style: italic;
+  }
+  .common-activity-item .user-name {
+    font-size: 18px;
+    line-height: 36px;
+  }
 
 
   /* .main-yang {
