@@ -18,15 +18,16 @@
             <i class="fas fa-search"></i>
           </div>
           <span class="search-symbol">or</span>
-          <button class="search-btn strong">Submit New Beer</button>
+          <button class="search-btn strong" id="Submit">Submit New Beer</button>
         </div>
         <div class="beers-list-content">
           <div class="result-desc">Search Results for <span class="strong">Beer Name/Brand</span></div>
           <ul>
+            {{#each beers}}
             <li class="beer-item-box clearfix">
               <div class="beer-left">
                 <div class="beer-filed strong">
-                  Beer Name
+                  {{name}}
                 </div>
                 <div class="beer-filed">
                   Brewing Company
@@ -44,71 +45,7 @@
                 </div>
               </div>
             </li>
-            <li class="beer-item-box clearfix">
-              <div class="beer-left">
-                <div class="beer-filed strong">
-                  Beer Name
-                </div>
-                <div class="beer-filed">
-                  Brewing Company
-                </div>
-                <div class="beer-filed">
-                  Toste profile
-                </div>
-              </div>
-              <div class="beer-right">
-                <div class="beer-filed">
-                  ABV: 5%
-                </div>
-                <div class="beer-filed">
-                  User Ratings: 4.5/5
-                </div>
-              </div>
-            </li>
-            <li class="beer-item-box clearfix">
-              <div class="beer-left">
-                <div class="beer-filed strong">
-                  Beer Name
-                </div>
-                <div class="beer-filed">
-                  Brewing Company
-                </div>
-                <div class="beer-filed">
-                  Toste profile
-                </div>
-              </div>
-              <div class="beer-right">
-                <div class="beer-filed">
-                  ABV: 5%
-                </div>
-                <div class="beer-filed">
-                  User Ratings: 4.5/5
-                </div>
-              </div>
-            </li>
-            <li class="beer-item-box clearfix">
-              <div class="beer-left">
-                <div class="beer-filed strong">
-                  Beer Name
-                </div>
-                <div class="beer-filed">
-                  Brewing Company
-                </div>
-                <div class="beer-filed">
-                  Toste profile
-                </div>
-              </div>
-              <div class="beer-right">
-                <div class="beer-filed">
-                  ABV: 5%
-                </div>
-                <div class="beer-filed">
-                  User Ratings: 4.5/5
-                </div>
-              </div>
-            </li>
-            
-            
+            {{/each}}
           </ul>
           <div class="page-turner">
             <span class="btn pre"> < </span>
