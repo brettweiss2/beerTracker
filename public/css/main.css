@@ -579,11 +579,9 @@ body
   }
   .leave-review-box .handle-box .rate-box .diamond .arrow-up{
     top: 2px;
-    cursor: pointer;
   }
   .leave-review-box .handle-box .rate-box .diamond .arrow-bottom{
     bottom: 2px;
-    cursor: pointer;
   }
 
   .leave-review-box .handle-box .submit-btn {
@@ -766,6 +764,7 @@ body
     
     top:0;
     left: 0;
+    cursor: pointer;
     
     }
     .arrow-up:active, .arrow-bottom:active{
@@ -797,6 +796,7 @@ body
       bottom:0;
       left: 0;
       transition: transform 80ms ease-in;
+      cursor: pointer;
     
     }
 
@@ -864,4 +864,11 @@ body
     outline: none;
   }
 
+  .disabled {
+    cursor: not-allowed ;
+    /* pointer-events: none;
+    opacity: 0.6; */
+    opacity: 0.6;
+
+  }
   

@@ -27,7 +27,9 @@ const constructorMethod = (app) => {
     })
 
     app.get('/beerPage',(req, res) =>{
-        res.render('beerPage/index');
+        res.render('beerPage/index', {
+            rateNum: '3',
+        });
     })
 
     app.get('/beerSubmission',(req, res) =>{

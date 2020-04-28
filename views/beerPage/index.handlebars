@@ -1,6 +1,38 @@
 
 
-<script type="text/template" id="amz-tpl">
+<script>
+
+  window.onload=function(){
+    
+    const arrowUpBtn = document.getElementById('arrowUp');
+    const arrowDownBtn = document.getElementById('arrowDown');
+    const rateNum = document.getElementById('rate-num');
+    const upClass = arrowUpBtn.getAttribute('class');
+    arrowUpBtn.addEventListener('click', () => {
+      let num = +rateNum.innerText;
+			if (num < 5) {
+        rateNum.innerText = num + 0.5
+        arrowDownBtn.classList.remove("disabled");
+      } else {
+        arrowUpBtn.classList.add("disabled");
+      }
+		});
+
+    arrowDownBtn.addEventListener('click', () => {
+      let num = +rateNum.innerText;
+      if (num == 5) {
+        arrowUpBtn.classList.remove("disabled");
+      }
+      num = num - 0.5
+			if (num >= 0) {
+        rateNum.innerText = num
+        num <= 0 && arrowDownBtn.classList.add("disabled");
+      }
+		});
+  }
+
+</script>
+
 <div>
   
     <div id="bg">
@@ -30,9 +62,9 @@
             </div>
             <div class="handle-box">
               <div class="rate-box">
-                <div class="rate-num">{{rateNum}}/5</div>
+                <div class="rate-num"><span id="rate-num">3</span>/5</div>
                 <div class="diamond">
-                  <span class="arrow-up" id="arrowUp"></span>
+                  <span class="arrow-up tete" id="arrowUp"></span>
                   <span class="arrow-bottom" id="arrowDown"></span>
                 </div>
               </div>
@@ -107,42 +139,3 @@
   </div>
    
 </div>
-
-</script>
-
-<script>
-  
-
-
-  var rateNum = 3;
-  var $tpl = document.getElementById('amz-tpl');
-     console.log('&&&&&', $tpl)
-      var source = $tpl.innerHTML;
-      var template = Handlebars.compile(source);
-      var context = {rateNum: 3, title: 'juiuiu'};
-      console.log('*****', template)
-      var html = template(context);
-      document.getElementById('app').innerHTML = html;
-      console.log('UUUU', this)
-	window.onload=function(){
-     
-
-
-
-    const arrowUpBtn = document.getElementById('arrowUp');
-    const arrowDownBtn = document.getElementById('arrowDown');
-    arrowUpBtn.addEventListener('click', () => {
-			if (rateNum < 5) {
-        rateNum += 0.5
-      }
-		});
-
-    arrowDownBtn.addEventListener('click', () => {
-			if (rateNum > 0) {
-        rateNum -= 0.5
-      }
-		});
-		
-	}
-
-</script>
