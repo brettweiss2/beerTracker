@@ -30,23 +30,16 @@
             </div>
             <div class="handle-box">
               <div class="rate-box">
-                {{content.rateNum}}
-                {{rateNum}}
-                {{title}}
-                {{this.data}}
                 <div class="rate-num">{{rateNum}}/5</div>
                 <div class="diamond">
                   <span class="arrow-up" id="arrowUp"></span>
                   <span class="arrow-bottom" id="arrowDown"></span>
                 </div>
               </div>
-              {{#each this}}
-                  <p>{{rateNum}}:{{rateNum}}</p>
-              {{/each}}
-
-              <button>Submit Review</button>
+              <button class="submit-btn">Submit Review</button>
             </div>
           </div>
+          <div class="reviews-title strong">Reviews</div>
           <ul>
             <li class="common-activity-item">
               <div class="desc">This is the best beer out there. The sour taste is for sure an aquired taste, but I find it delicious and strong enough to just sip.</div>
@@ -64,7 +57,7 @@
           </div>
         </div>
       </div>
-      <div class="beer-content-common userProfile-right">
+      <div class="beerPage-right">
         <div class="developers-choice">
           <div class="top-title strong">
             Developer‘s Choice
@@ -86,7 +79,26 @@
             </ul>
           </div>
         </div>
-        <div>
+        <div class="similar-beer">
+          <div class="top-title strong">
+            Similar Beers
+          </div>
+          <div class="choice-list">
+            <ul>
+              <li class="beer-item-box clearfix">
+                <div class="beer-filed strong">Beer Name</div>
+                <div class="beer-filed">Brewing Company</div>
+              </li>
+              <li class="beer-item-box clearfix">
+                <div class="beer-filed strong">Beer Name</div>
+                <div class="beer-filed">Brewing Company</div>
+              </li>
+              <li class="beer-item-box clearfix">
+                <div class="beer-filed strong">Beer Name</div>
+                <div class="beer-filed">Brewing Company</div>
+              </li>
+            </ul>
+          </div>
 
         </div>
         

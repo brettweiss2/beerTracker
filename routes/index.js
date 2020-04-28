@@ -30,6 +30,10 @@ const constructorMethod = (app) => {
         res.render('beerPage/index');
     })
 
+    app.get('/beerSubmission',(req, res) =>{
+        res.render('beerSubmission/index');
+    })
+
 
 	app.use('*', (req, res) => {
 		res.sendStatus(404);
