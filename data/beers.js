@@ -70,9 +70,9 @@ module.exports = {
      * Gets all beers from the database
      * @returns the beers in an Array
      */
-    async getAllBeers() {
+    async getAllBeers(page,size) {
         const beerCollection = await beers();
-        return await beerCollection.find({}).toArray();
+        return await beerCollection.find({}).limit(size).skip((page-1)*size).toArray();
     },
 
     /**

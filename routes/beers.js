@@ -15,8 +15,13 @@ router.get('/post', async (req, res) =>{
 
 // get all beers
 router.get('/', async (req, res) =>{
-    const beerList = await beerData.getAllBeers();
-    res.render('beers/index',{beers: beerList})
+	let query = req.query;
+	console.log(query.page)
+	console.log(query.size)
+
+		const beerList = await beerData.getAllBeers(1, 4);
+		console.log('^^^^', beerList)
+    res.render('beersList/index',{beers: beerList})
 })
 
 

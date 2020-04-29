@@ -14,6 +14,28 @@ const constructorMethod = (app) => {
         res.render('signUpLogin/index');
     })
 
+    app.get('/beersList',(req, res) =>{
+        res.render('beersList/index');
+    })
+
+    app.get('/userProfile',(req, res) =>{
+        res.render('userProfile/index');
+    })
+
+    app.get('/dashboard',(req, res) =>{
+        res.render('dashboard/index');
+    })
+
+    app.get('/beerPage',(req, res) =>{
+        res.render('beerPage/index', {
+            rateNum: '3',
+        });
+    })
+
+    app.get('/beerSubmission',(req, res) =>{
+        res.render('beerSubmission/index');
+    })
+
 
 	app.use('*', (req, res) => {
 		res.sendStatus(404);
