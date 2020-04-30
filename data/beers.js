@@ -70,9 +70,43 @@ module.exports = {
      * Gets all beers from the database
      * @returns the beers in an Array
      */
-    async getAllBeers() {
+    async getAllBeers(page,size) {
         const beerCollection = await beers();
-        return await beerCollection.find({}).toArray();
+    //     return await beerCollection.aggregate([
+    //         {   
+    //             $lookup:
+    //             {
+    //                 from: "reviews",
+    //                 localField: "reviews",
+    //                 foreignField: "_id",
+    //                 as: "reviews_doc"
+    //             }
+    //       }
+    //    ]).skip((page-1)*size).limit(size).toArray();
+        return await beerCollection.aggregate([
+            {
+                $facet: {
+                    // 'totalCount': [{ $group: {count: { $sum: 1 } } }] ,
+                    'totalCount': [  { $count: 'totalCount' } ] ,
+                    'result': [
+                        {
+                            $lookup:{
+                                from: "reviews",
+                                localField: "reviews",
+                                foreignField: "_id",
+                                as: "reviews_doc",
+                            }
+                        },
+                        {
+                            $skip: (page-1)*size,
+                        },
+                        {
+                            $limit: size
+                        }
+                    ]   
+                }
+            } 
+         ]).toArray();
     },
 
     /**
