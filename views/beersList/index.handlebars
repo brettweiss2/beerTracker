@@ -1,18 +1,49 @@
 <script>
+  window.onbeforeunload = function(event){
+
+};  
 	window.onload=function(){
     let prePageBtn = document.getElementById('prePage');
     let nextPageBtn = document.getElementById('nextPage');
     let form = document.getElementById('paginator');
+    let total = {{total}};
+    let page = {{page}};
+    let size = {{size}};
+    let totalPage = parseInt(total / size);
+    if (total % size > 0) {
+      totalPage += 1;
+    } 
+    console.log('*****', totalPage, page)
+    if (page == 1) {
+      prePageBtn.classList.add("disabled");
+    } else if (totalPage == page){
+      nextPageBtn.classList.add("disabled");
+    } else {
+      prePageBtn.classList.remove("disabled");
+      nextPageBtn.classList.remove("disabled");
+    }
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+    });
     nextPageBtn.addEventListener('click', () => {
-      let page = +document.getElementById("page").value;
+      if (page >= totalPage) {return}
       document.getElementById("page").value = page + 1;
       form.submit();
     })
     prePageBtn.addEventListener('click', () => {
-      let page = +document.getElementById("page").value;
+      if (page <= 1) {return}
       document.getElementById("page").value = page - 1;
       form.submit();
     })
+
+    let searchBtn = document.getElementById('search');
+    searchBtn.addEventListener('click', () => {
+      let page = 1;
+      document.getElementById("page").value = page;
+      form.submit();
+    })
+
+    
 	}
 
 </script>
@@ -24,44 +55,45 @@
     <div class="mask"></div>
     <div class="container-main beersList clearfix">
       <div class="beer-content-common beersList-left">
-        <div class="beers-list-query clearfix">
-          <div class="search_box">
-            <input type="text" placeholder="Search for a Beer or Brand...">
-            <i class="fas fa-search"></i>
+        <form id="paginator" action="/beers" method="post">
+          <div class="beers-list-query clearfix">
+            <div class="search_box">
+              <input type="text" placeholder="Search for a Beer or Brand..." name="beerLike" value={{beerLike}}>
+              <i class="fas fa-search" id="search"></i>
+            </div>
+            <span class="search-symbol">or</span>
+            <button class="search-btn strong" id="dddddd">Submit New Beer</button>
           </div>
-          <span class="search-symbol">or</span>
-          <button class="search-btn strong" id="Submit">Submit New Beer</button>
-        </div>
-        <div class="beers-list-content">
-          <div class="result-desc">Search Results for <span class="strong">Beer Name/Brand</span></div>
-          <ul>
-            {{#each beers}}
-            <li class="beer-item-box clearfix">
-              <div class="beer-left">
-                <div class="beer-filed strong">
-                  {{name}}
+
+          <div class="beers-list-content">
+            <div class="result-desc">Search Results for <span class="strong">Beer Name/Brand</span></div>
+            <ul>
+              {{#each beers}}
+              <li class="beer-item-box clearfix">
+                <div class="beer-left">
+                  <div class="beer-filed strong">
+                    {{name}}
+                  </div>
+                  <div class="beer-filed">
+                    Brewing Company
+                  </div>
+                  <div class="beer-filed">
+                    Toste profile: {{type}}
+                  </div>
                 </div>
-                <div class="beer-filed">
-                  Brewing Company
+                <div class="beer-right">
+                  <div class="beer-filed">
+                    ABV: {{abv}}
+                  </div>
+                  <div class="beer-filed">
+                    User Ratings: {{rating}}/5
+                  </div>
                 </div>
-                <div class="beer-filed">
-                  Toste profile: {{type}}
-                </div>
-              </div>
-              <div class="beer-right">
-                <div class="beer-filed">
-                  ABV: {{abv}}
-                </div>
-                <div class="beer-filed">
-                  User Ratings: {{rating}}/5
-                </div>
-              </div>
-            </li>
-            {{/each}}
-          </ul>
-          <form id="paginator" action="/beers" method="post">
+              </li>
+              {{/each}}
+            </ul>
             <div class="page-turner">
-              <span class="btn pre" id="prePage" name="prePage">
+              <span class="btn pre " id="prePage" name="prePage">
                 <
               </span>
               <span>{{page}}</span>
@@ -70,9 +102,9 @@
                 >
               </span>
             </div>
-          </form>
-          
-        </div>
+            
+          </div>
+        </form>
       </div>
       <div class="beer-content-common beersList-right">
         <div class="top-title strong">

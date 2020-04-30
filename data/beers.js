@@ -70,7 +70,7 @@ module.exports = {
      * Gets all beers from the database
      * @returns the beers in an Array
      */
-    async getAllBeers(page,size) {
+    async getAllBeers(name, page,size) {
         const beerCollection = await beers();
     //     return await beerCollection.aggregate([
     //         {   
@@ -83,7 +83,30 @@ module.exports = {
     //             }
     //       }
     //    ]).skip((page-1)*size).limit(size).toArray();
+    let match = {};
+    if (name) {
+        match = { 
+            $or: [
+                { 
+                    'name': {
+                        $regex: eval("/"+ name +"/i")
+                    }
+                },
+                {
+                    'hops': {
+                        $regex: eval("/"+ name +"/i")
+                    }
+                }
+            ]
+            
+        }
+    }
+    console.log('*****name',name)
         return await beerCollection.aggregate([
+            // {$match: {name: {$regex: eval("/"+name+"/i")}}},
+            {
+                $match: match
+            },
             {
                 $facet: {
                     // 'totalCount': [{ $group: {count: { $sum: 1 } } }] ,

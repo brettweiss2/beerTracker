@@ -25,7 +25,8 @@ router.all('/', async (req, res) =>{
 	let query = req.body;
 	let page = query.page || 1;
 	let size = query.size || 4;
-	const data = await beerData.getAllBeers(page, size);
+	let beerLike = query.beerLike || '';
+	const data = await beerData.getAllBeers(beerLike, page, size);
 	const totalCount = data[0].totalCount[0].totalCount;
 	let beerList = data[0].result;
 	// 分页逻辑需要完善
@@ -39,7 +40,13 @@ router.all('/', async (req, res) =>{
 			rating = (rateNum / size).toFixed(1);
 			item.rating = (rating % 1 == 0) ? parseInt(rating) : rating;
 		})
-    res.render('beersList/index',{beers: beerList, page: page, total: totalCount})
+    res.render('beersList/index',{
+			beers: beerList, 
+			page: page,
+			beerLike: beerLike,
+			total: totalCount,
+			size: size,
+		})
 })
 
 

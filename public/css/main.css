@@ -865,7 +865,7 @@ body
   }
 
   .disabled {
-    cursor: not-allowed ;
+    cursor: not-allowed !important;
     /* pointer-events: none;
     opacity: 0.6; */
     opacity: 0.6;
