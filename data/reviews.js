@@ -1,6 +1,7 @@
 const mongoCollections = require("../config/mongoCollections");
 const reviews = mongoCollections.reviews;
 const users = require("./users");
+const beers = require("./beers");
 const { ObjectId } = require('mongodb');
 
 module.exports = {
@@ -24,6 +25,9 @@ module.exports = {
         if (rating < 0 || rating > 5) throw new Error("rating must be between 0 and 5");
         if (typeof comment !== "string") throw new Error("comment must be a string");
 
+        const beer = await beers.getBeer(beerId);
+        let beerReviews = beer.reviews;
+
         const reviewCollection = await reviews();
         const newReview = {
             user: userId,
@@ -35,6 +39,9 @@ module.exports = {
         const insertInfo = await reviewCollection.insertOne(newReview);
         if (insertInfo.insertedCount === 0) throw new Error("Could not add review");
         const newId = insertInfo.insertedId;
+
+        beerReviews.push(newId);
+        await beers.updateBeer(beerId, {reviews: beerReviews});
 
         const user = await users.getUser(userId);
         let userReviews = user.reviews;
@@ -82,10 +89,15 @@ module.exports = {
         
         const review = await this.getReview(id);
         const user = await users.getUser(review.user);
+        const beer = await beers.getBeer(review.beer);
         let userReviews = user.reviews;
-        const index = userReviews.indexOf(id);
+        let beerReviews = beer.reviews;
+        let index = userReviews.indexOf(id);
         userReviews.splice(index, 1);
         await users.updateUser(review.user, {reviews: userReviews});
+        index = beerReviews.indexOf(id);
+        beerReviews.splice(index, 1);
+        await beers.updateBeer(review.beer, {reviews: beerReviews});
 
         const reviewCollection = await reviews();
         const deletionInfo = await reviewCollection.removeOne({_id: objId});
