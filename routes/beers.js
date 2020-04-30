@@ -61,60 +61,61 @@ router.get('/:id', async (req, res) =>{
 })
 
 
-// router.post('/', async (req, res) => {
-// 	let beerPost = req.body;
-// 	let errors = [];
+router.post('/add', async (req, res) => {
+	let beerPost = req.body;
+	let errors = [];
 
-// 	if (!beerPost.name) {
-// 		errors.push('No name provided');
-// 	}
-
-
-// 	if (!beerPost.type) {
-// 		errors.push('No type provided');
-// 	}
-// 	if (!beerPost.abv) {
-// 		errors.push('No abv provided');
-// 	}
-// 	if (!beerPost.malt) {
-// 		errors.push('No malt provided');
-// 	}
-// 	if (!beerPost.hops) {
-// 		errors.push('No hops provided');
-// 	}
-// 	if (!beerPost.notes) {
-// 		errors.push('No notes provided');
-// 	}
+	console.log('**********', beerPost)
+	if (!beerPost.name) {
+		errors.push('No name provided');
+	}
 
 
+	if (!beerPost.type) {
+		errors.push('No type provided');
+	}
+	if (!beerPost.abv) {
+		errors.push('No abv provided');
+	}
+	if (!beerPost.malt) {
+		errors.push('No malt provided');
+	}
+	if (!beerPost.hops) {
+		errors.push('No hops provided');
+	}
+	if (!beerPost.notes) {
+		errors.push('No notes provided');
+	}
 
 
 
-// 	if (errors.length > 0) {
-// 		res.render('beers/post', {
-// 			errors: errors,
-// 			hasErrors: true,
 
-// 		});
-// 		return;
-// 	}
 
-// 	try {
-// 		beerPost.abv = parseInt(beerPost.abv)
-// 		const newBeer = await beerData.addBeer(
-// 			beerPost.name,
-// 			beerPost.type,
-// 			beerPost.abv,
-//             beerPost.malt,
-//             beerPost.hops,
-// 			beerPost.notes,
+	if (errors.length > 0) {
+		res.render('beerSubmission/index', {
+			errors: errors,
+			hasErrors: true,
+
+		});
+		return;
+	}
+
+	try {
+		beerPost.abv = parseInt(beerPost.abv)
+		const newBeer = await beerData.addBeer(
+			beerPost.name,
+			beerPost.type,
+			beerPost.abv,
+            beerPost.malt,
+            beerPost.hops,
+			beerPost.notes,
 			
-// 		);
+		);
 
-// 		res.redirect(`/beers`);
-// 	} catch (e) {
-// 		res.status(500).json({ error: e });
-// 	}
-// });
+		res.redirect(`/beers`);
+	} catch (e) {
+		res.status(500).json({ error: e });
+	}
+});
 
 module.exports=router;

@@ -644,7 +644,7 @@ body
     padding-bottom: 10px;
     border-bottom: 1px solid #333;
   }
-  .userSubmission .beer-info-user form{
+  .userSubmission .beer-info-user {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

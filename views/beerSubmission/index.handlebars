@@ -1,7 +1,46 @@
 <script>
 	window.onload=function(){
-		
-	}
+    const arrowUpBtn = document.getElementById('arrowUp');
+    const arrowDownBtn = document.getElementById('arrowDown');
+    const rateNum = document.getElementById('rate-num');
+    const upClass = arrowUpBtn.getAttribute('class');
+    arrowUpBtn.addEventListener('click', () => {
+      let num = +rateNum.innerText;
+			if (num < 5) {
+        rateNum.innerText = num + 0.5
+        arrowDownBtn.classList.remove("disabled");
+      } else {
+        arrowUpBtn.classList.add("disabled");
+      }
+		});
+
+    arrowDownBtn.addEventListener('click', () => {
+      let num = +rateNum.innerText;
+      if (num == 5) {
+        arrowUpBtn.classList.remove("disabled");
+      }
+      num = num - 0.5
+			if (num >= 0) {
+        rateNum.innerText = num
+        num <= 0 && arrowDownBtn.classList.add("disabled");
+      }
+		});
+
+
+    const message = new Message();
+    let hasErrors = {{hasErrors}}
+    console.log('&*&*&*', hasErrors)
+    console.log('****', message)
+    if (hasErrors) {
+      message.show({
+        type: 'warning',
+        text: '点我旁边的叉叉试试',
+        duration: 0, // 不会自动消失
+        closeable: true, // 可手动关闭
+        });
+    }
+    
+  }
 
 </script>
 
@@ -12,30 +51,30 @@
     <div class="mask"></div>
     <div class="container-main userProfile userSubmission clearfix">
       <div class="beer-content-common userProfile-left">
-        <div class="beer-info-user">
-          <form action="#">
-            <input type="text" placeholder="Beer Name" />
-            <input type="text" placeholder="ABV: 5.4%" />
-            <input type="text" placeholder="Brewing Company" />
-            <input type="text" placeholder="Taste Profile">
-          </form>
-        </div>
-        <div class="activity-list-title strong">Leave A Review</div>
-        <div class="leave-review-box">
-          <div class="text-content">
-            <textarea name="" id="" rows="5"></textarea>
+        <form action="/beers/add" id="beerInfo" method="post">
+          <div class="beer-info-user">
+              <input type="text" placeholder="Beer Name" name="name"/>
+              <input type="text" placeholder="ABV: 5.4%" name="abv"/>
+              <input type="text" placeholder="Brewing Company" name="hops"/>
+              <input type="text" placeholder="Taste Profile" name="type">         
           </div>
-          <div class="handle-box">
-            <div class="rate-box">
-              <div class="rate-num">{{rateNum}}/5</div>
-              <div class="diamond">
-                <span class="arrow-up" id="arrowUp"></span>
-                <span class="arrow-bottom" id="arrowDown"></span>
-              </div>
+          <div class="activity-list-title strong">Leave A Review</div>
+          <div class="leave-review-box">
+            <div class="text-content">
+              <textarea name="reviewText" id="" rows="5"></textarea>
             </div>
-            <button class="submit-btn">Submit Review</button>
+            <div class="handle-box">
+              <div class="rate-box">
+                <div class="rate-num"><span id="rate-num" name="rate">3</span>/5</div>
+                <div class="diamond">
+                  <span class="arrow-up tete" id="arrowUp"></span>
+                  <span class="arrow-bottom" id="arrowDown"></span>
+                </div>
+              </div>
+              <button class="submit-btn">Submit Review</button>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
       <div class="beer-content-common userProfile-right">
         <div class="top-title strong">
@@ -72,6 +111,11 @@
         </div>
       </div>
     </div>
+  </div>
+  
+  <div role="alert" class="el-message el-message--error" style="top: 84px; z-index: 2002;">
+    <i class="el-message__icon el-icon-error"></i>
+    <p class="el-message__content">错了哦，这是一条错误消息</p>
   </div>
    
 </div>
