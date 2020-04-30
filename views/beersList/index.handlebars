@@ -1,6 +1,18 @@
 <script>
 	window.onload=function(){
-		
+    let prePageBtn = document.getElementById('prePage');
+    let nextPageBtn = document.getElementById('nextPage');
+    let form = document.getElementById('paginator');
+    nextPageBtn.addEventListener('click', () => {
+      let page = +document.getElementById("page").value;
+      document.getElementById("page").value = page + 1;
+      form.submit();
+    })
+    prePageBtn.addEventListener('click', () => {
+      let page = +document.getElementById("page").value;
+      document.getElementById("page").value = page - 1;
+      form.submit();
+    })
 	}
 
 </script>
@@ -33,25 +45,33 @@
                   Brewing Company
                 </div>
                 <div class="beer-filed">
-                  Toste profile
+                  Toste profile: {{type}}
                 </div>
               </div>
               <div class="beer-right">
                 <div class="beer-filed">
-                  ABV: 5%
+                  ABV: {{abv}}
                 </div>
                 <div class="beer-filed">
-                  User Ratings: 4.5/5
+                  User Ratings: {{rating}}/5
                 </div>
               </div>
             </li>
             {{/each}}
           </ul>
-          <div class="page-turner">
-            <span class="btn pre"> < </span>
-            <span>1</span>
-            <span class="btn next"> > </span>
-          </div>
+          <form id="paginator" action="/beers" method="post">
+            <div class="page-turner">
+              <span class="btn pre" id="prePage" name="prePage">
+                <
+              </span>
+              <span>{{page}}</span>
+              <input type="hidden" name="page" id="page" value={{page}}>
+              <span class="btn next" id="nextPage"> 
+                >
+              </span>
+            </div>
+          </form>
+          
         </div>
       </div>
       <div class="beer-content-common beersList-right">
