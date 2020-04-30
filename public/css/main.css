@@ -80,7 +80,7 @@ body
     float: left;
   }
   
-  .search_box input[type="text"]{
+  .search_box t[tinpuype="text"]{
     width: 100%;
     padding: 20px;
     padding-right: 60px;

@@ -1,18 +1,6 @@
 <script>
 	window.onload=function(){
-    let prePageBtn = document.getElementById('prePage');
-    let nextPageBtn = document.getElementById('nextPage');
-    let form = document.getElementById('paginator');
-    nextPageBtn.addEventListener('click', () => {
-      let page = +document.getElementById("page").value;
-      document.getElementById("page").value = page + 1;
-      form.submit();
-    })
-    prePageBtn.addEventListener('click', () => {
-      let page = +document.getElementById("page").value;
-      document.getElementById("page").value = page - 1;
-      form.submit();
-    })
+		
 	}
 
 </script>
@@ -30,48 +18,103 @@
             <i class="fas fa-search"></i>
           </div>
           <span class="search-symbol">or</span>
-          <button class="search-btn strong" id="Submit">Submit New Beer</button>
+          <button class="search-btn strong">Submit New Beer</button>
         </div>
         <div class="beers-list-content">
           <div class="result-desc">Search Results for <span class="strong">Beer Name/Brand</span></div>
           <ul>
-            {{#each beers}}
             <li class="beer-item-box clearfix">
               <div class="beer-left">
                 <div class="beer-filed strong">
-                  {{name}}
+                  Beer Name
                 </div>
                 <div class="beer-filed">
                   Brewing Company
                 </div>
                 <div class="beer-filed">
-                  Toste profile: {{type}}
+                  Toste profile
                 </div>
               </div>
               <div class="beer-right">
                 <div class="beer-filed">
-                  ABV: {{abv}}
+                  ABV: 5%
                 </div>
                 <div class="beer-filed">
-                  User Ratings: {{rating}}/5
+                  User Ratings: 4.5/5
                 </div>
               </div>
             </li>
-            {{/each}}
+            <li class="beer-item-box clearfix">
+              <div class="beer-left">
+                <div class="beer-filed strong">
+                  Beer Name
+                </div>
+                <div class="beer-filed">
+                  Brewing Company
+                </div>
+                <div class="beer-filed">
+                  Toste profile
+                </div>
+              </div>
+              <div class="beer-right">
+                <div class="beer-filed">
+                  ABV: 5%
+                </div>
+                <div class="beer-filed">
+                  User Ratings: 4.5/5
+                </div>
+              </div>
+            </li>
+            <li class="beer-item-box clearfix">
+              <div class="beer-left">
+                <div class="beer-filed strong">
+                  Beer Name
+                </div>
+                <div class="beer-filed">
+                  Brewing Company
+                </div>
+                <div class="beer-filed">
+                  Toste profile
+                </div>
+              </div>
+              <div class="beer-right">
+                <div class="beer-filed">
+                  ABV: 5%
+                </div>
+                <div class="beer-filed">
+                  User Ratings: 4.5/5
+                </div>
+              </div>
+            </li>
+            <li class="beer-item-box clearfix">
+              <div class="beer-left">
+                <div class="beer-filed strong">
+                  Beer Name
+                </div>
+                <div class="beer-filed">
+                  Brewing Company
+                </div>
+                <div class="beer-filed">
+                  Toste profile
+                </div>
+              </div>
+              <div class="beer-right">
+                <div class="beer-filed">
+                  ABV: 5%
+                </div>
+                <div class="beer-filed">
+                  User Ratings: 4.5/5
+                </div>
+              </div>
+            </li>
+            
+            
           </ul>
-          <form id="paginator" action="/beers" method="post">
-            <div class="page-turner">
-              <span class="btn pre" id="prePage" name="prePage">
-                <
-              </span>
-              <span>{{page}}</span>
-              <input type="hidden" name="page" id="page" value={{page}}>
-              <span class="btn next" id="nextPage"> 
-                >
-              </span>
-            </div>
-          </form>
-          
+          <div class="page-turner">
+            <span class="btn pre"> < </span>
+            <span>1</span>
+            <span class="btn next"> > </span>
+          </div>
         </div>
       </div>
       <div class="beer-content-common beersList-right">
