@@ -69,6 +69,19 @@ module.exports = {
         return result;
     },
 
+
+    //temporary
+    async getUserByEmail(emailAddress) {
+        if (!emailAddress) throw new Error("Must provide the user's ID");
+        if (typeof emailAddress !== "string") throw new Error("ID must be a string");
+
+        const userCollection = await users();
+        const result = await userCollection.findOne({email: emailAddress});
+        if (result === null) throw new Error("No user with that ID");
+
+        return result;
+    },
+
     /**
      * Gets all users from the database
      * @returns the users in an Array

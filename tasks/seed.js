@@ -9,8 +9,8 @@ const main = async () => {
 	await db.dropDatabase();
 
     //users
-    let brett = await users.addUser("bweiss@stevens.edu", "pw", "Brett", "Weiss", "Pine Beach", "New Jersey", "USA");
-    let john = await users.addUser("john@smith.com", "pw", "John", "Smith", "NYC", "NY", "USA");
+    let brett = await users.addUser("bweiss@stevens.edu", "$2a$16$7JKSiEmoP3GNDSalogqgPu0sUbwder7CAN/5wnvCWe6xCKAKwlTD.", "Brett", "Weiss", "Pine Beach", "New Jersey", "USA");
+    let john = await users.addUser("john@smith.com", "$2a$16$SsR2TGPD24nfBpyRlBzINeGU61AH0Yo/CbgfOlU1ajpjnPuiQaiDm", "John", "Smith", "NYC", "NY", "USA");
     let jane = await users.addUser("jane@doe.com", "pw", "Jane", "Doe", "Austin", "TX", "USA");
     let steve = await users.addUser("steve@wilkos.com", "pw", "Steve", "Wilkos", "Madison", "WI", "USA");
     let justin = await users.addUser("justin@williams.com", "pw", "Justin", "Williams", "Reno", "NV", "USA");

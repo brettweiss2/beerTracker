@@ -4,15 +4,12 @@ const signUpLoginRoutes = require('./signUpLogin')
 
 const constructorMethod = (app) => {
 	app.use('/beers', beerRoutes);
-    // app.use('/users', userRoutes);
 
     app.get('/',(req, res) =>{
         res.render('home/index');
     })
 
-    app.get('/signUpLogin',(req, res) =>{
-        res.render('signUpLogin/index');
-    })
+    app.use('/signUpLogin',signUpLoginRoutes)
 
     app.get('/beersList',(req, res) =>{
         res.render('beersList/index');

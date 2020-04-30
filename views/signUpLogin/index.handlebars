@@ -23,24 +23,31 @@
     <div class="signUpLogin">
         <div class="container" id="container">
 	<div class="form-container sign-up-container">
-		<form action="#">
+		<form action="/signUplogin/signUp" method = 'POST' id = 'signUp_form'>
 			<h1>Create Account</h1>
-			<input type="text" placeholder="Name" />
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
-			<button>Sign Up</button>
+			<input type="email" name='email' placeholder="Email" />
+			<input type="text" name='password'placeholder="Password" />
+			<input type="text" name='firstName' placeholder="First Name" />
+			<input type="text" name='lastName' placeholder="Last Name" />
+			<input type="text" name='city' placeholder="City" />
+			<input type="text" name='state' placeholder="State" />
+			<input type="text" name='country'placeholder="Country" />
+			<button type='submit'>Sign Up</button>
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
-		<form action="#">
+		<form action="/signUpLogin/login" method="POST" id = 'login_form'>
 			<h1>Sign in</h1>
 
 			<span>or use your account</span>
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
+			<input type="email" name = 'email' placeholder="Email" />
+			<input type="text" name = 'password'placeholder="Password" />
 			<a href="#">Forgot your password?</a>
-			<button>Sign In</button>
+			<button type='submit'> Sign In</button>
 		</form>
+			{{#if error}}
+    			<p> You need a vaild username or password</p>
+  			{{/if}}
 	</div>
 	<div class="overlay-container">
 		<div class="overlay">
