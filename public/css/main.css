@@ -16,8 +16,9 @@
     padding: 0;
     overflow: hidden;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
+    position: relative;
 }
+
 
 .topnav a {
     display:inline-block;
@@ -357,6 +358,7 @@ body
     left: 50%;
     transform: translateX(-50%);
     padding-top: 30px;
+    padding-bottom: 100px;
     z-index: 100;
     color: rgba(0,0,0,0.9)
   }
@@ -428,11 +430,14 @@ body
   .userProfile .userProfile-left {
     float: left;
     width: 68%;
+    /* display: table-cell; */
+    padding-right: 30px;
   }
 
   .userProfile .userProfile-right {
     float: right;
     width: 28%;
+    /* display: table-cell; */
   }
 
   .userProfile .userProfile-left .user-info, .beerPage .userProfile-left .beer-info {
@@ -445,7 +450,7 @@ body
   
 
   .userProfile .userProfile-left .recent-activity-list {
-    height: 500px;
+    /* height: 500px; */
     border: 1px solid #333;
     border-radius: 10px;
       box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
@@ -852,6 +857,15 @@ body
     font-size: 18px;
     line-height: 36px;
   }
+  .common-container {
+    width: 100%;
+    min-height: 800px;
+    /* overflow-y: auto; */
+  }
+
+  main {
+    background: url('../../public/assets/homepic.jpg') no-repeat;
+  }
 
 
   /* .main-yang {
@@ -891,4 +905,14 @@ body
     opacity: 0.6;
 
   }
-  
+
+  html, body, header, main {
+    width: 100%;
+    height: 100%;
+  }
+
+  main {
+     overflow-y: auto;
+  }
+
+    
