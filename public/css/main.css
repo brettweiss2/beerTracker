@@ -525,6 +525,11 @@ body
     line-height: 1.8;
   }
 
+  .dashboard .submissions-list .beer-item-box .beer-info{
+    width: 70%;
+    padding: 0;
+  }
+
   /* beer page */
   .userProfile .userProfile-left .beer-info {
     padding: 10px 20px;
@@ -579,9 +584,21 @@ body
   }
   .leave-review-box .handle-box .rate-box .diamond .arrow-up{
     top: 2px;
+    left: 50%;
+    transform: translateX(-50%);
   }
   .leave-review-box .handle-box .rate-box .diamond .arrow-bottom{
     bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .leave-review-box .handle-box .rate-box .diamond .arrow-bottom:active{
+    transform: translateX(-50%) scale(0.8);
+  }
+
+  .leave-review-box .handle-box .rate-box .diamond .arrow-up:active{
+    transform: translateX(-50%) scale(0.8);
   }
 
   .leave-review-box .handle-box .submit-btn {
@@ -650,17 +667,20 @@ body
     flex-wrap: wrap;
     justify-content: space-between;
   }
+  .userSubmission .beer-info-user div.form-group {
 
+    width: 40%;
+  }
+  .userSubmission .beer-info-user div.form-group:last-child {
+
+    width: 100%;
+  }
   .userSubmission .beer-info-user input{
+    width: 100%;
     background-color: #eee;
     border: none;
     padding: 12px 15px;
-    margin: 8px 0;
-    width: 40%;
     display: inline-block;
-  }
-  .userSubmission .beer-info-user input:last-child{
-    width: 100%;
   }
 
   .userSubmission .activity-list-title {
@@ -768,7 +788,7 @@ body
     
     }
     .arrow-up:active, .arrow-bottom:active{
-      transform: scale(0.9);
+      transform: scale(0.8);
     }
     
     .arrow-bottom{

@@ -2,8 +2,12 @@
 	window.onload=function(){
     const arrowUpBtn = document.getElementById('arrowUp');
     const arrowDownBtn = document.getElementById('arrowDown');
-    const rateNum = document.getElementById('rate-num');
+    const rateNum = document.getElementById('rateNum');
     const upClass = arrowUpBtn.getAttribute('class');
+    const submitBtn = document.getElementById('submitBtn');
+    document.getElementById('beerInfo').addEventListener('submit',function(e){
+      e.preventDefault();
+    });
     arrowUpBtn.addEventListener('click', () => {
       let num = +rateNum.innerText;
 			if (num < 5) {
@@ -26,19 +30,55 @@
       }
 		});
 
+    $('#beerInfo').bootstrapValidator({
+      message: 'fhkefhkefe',
+      fields: {
+        "beerName": {
+          validators: {
+            notEmpty: {
+              message: 'The beer name is required and cannot be empty'
+            }
+          }
+        },
+        "abv": {
+          validators: {
+            notEmpty: {
+              message: 'The abv is required and cannot be empty'
+            }
+          }
+        },
+        "hops": {
+          validators: {
+            notEmpty: {
+              message: 'The Brewing Company is required and cannot be empty'
+            }
+          }
+        },
+        "type": {
+          validators: {
+            notEmpty: {
+              message: 'The Taste Profile is required and cannot be empty'
+            }
+          }
+        },
+        "reviewText": {
+          validators: {
+            notEmpty: {
+              message: 'The review is required and cannot be empty'
+            }
+          }
+        },
+      }
+    });
 
-    const message = new Message();
-    let hasErrors = {{hasErrors}}
-    console.log('&*&*&*', hasErrors)
-    console.log('****', message)
-    if (hasErrors) {
-      message.show({
-        type: 'warning',
-        text: '点我旁边的叉叉试试',
-        duration: 0, // 不会自动消失
-        closeable: true, // 可手动关闭
-        });
-    }
+    $('#submitBtn').click(function() {
+      $('#beerInfo').bootstrapValidator('validate');
+      // $('#beerInfo').data('bootstrapValidator').resetForm(true);
+    });
+
+    
+
+   
     
   }
 
@@ -53,25 +93,34 @@
       <div class="beer-content-common userProfile-left">
         <form action="/beers/add" id="beerInfo" method="post">
           <div class="beer-info-user">
-              <input type="text" placeholder="Beer Name" name="name"/>
+            <div class="form-group">
+              <input type="text" placeholder="Beer Name" name="beerName"/>
+            </div>
+            <div class="form-group">
               <input type="text" placeholder="ABV: 5.4%" name="abv"/>
+            </div>
+            <div class="form-group">
               <input type="text" placeholder="Brewing Company" name="hops"/>
-              <input type="text" placeholder="Taste Profile" name="type">         
+            </div>
+            <div class="form-group">
+              <input type="text" placeholder="Taste Profile" name="type">     
+            </div>
+                       
           </div>
           <div class="activity-list-title strong">Leave A Review</div>
-          <div class="leave-review-box">
-            <div class="text-content">
+          <div class="leave-review-box form-group">
+            <div class="text-content form-group">
               <textarea name="reviewText" id="" rows="5"></textarea>
             </div>
             <div class="handle-box">
               <div class="rate-box">
-                <div class="rate-num"><span id="rate-num" name="rate">3</span>/5</div>
+                <div class="rate-num"><span id="rateNum" name="rate">3</span>/5</div>
                 <div class="diamond">
                   <span class="arrow-up tete" id="arrowUp"></span>
                   <span class="arrow-bottom" id="arrowDown"></span>
                 </div>
               </div>
-              <button class="submit-btn">Submit Review</button>
+              <button class="submit-btn" id="submitBtn">Submit Review</button>
             </div>
           </div>
         </form>
@@ -111,11 +160,6 @@
         </div>
       </div>
     </div>
-  </div>
-  
-  <div role="alert" class="el-message el-message--error" style="top: 84px; z-index: 2002;">
-    <i class="el-message__icon el-icon-error"></i>
-    <p class="el-message__content">错了哦，这是一条错误消息</p>
   </div>
    
 </div>
