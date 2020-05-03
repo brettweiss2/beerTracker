@@ -31,7 +31,6 @@
 		});
 
     $('#beerInfo').bootstrapValidator({
-      message: 'fhkefhkefe',
       fields: {
         "beerName": {
           validators: {
@@ -71,10 +70,10 @@
       }
     });
 
-    $('#submitBtn').click(function() {
-      $('#beerInfo').bootstrapValidator('validate');
+    // $('#submitBtn').click(function() {
+      // $('#beerInfo').bootstrapValidator('validate');
       // $('#beerInfo').data('bootstrapValidator').resetForm(true);
-    });
+    // });
 
     
 
@@ -120,7 +119,7 @@
                   <span class="arrow-bottom" id="arrowDown"></span>
                 </div>
               </div>
-              <button class="submit-btn" id="submitBtn">Submit Review</button>
+              <button class="submit-btn" id="submitBtn" type="submit">Submit Review</button>
             </div>
           </div>
         </form>

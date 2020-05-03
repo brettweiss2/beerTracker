@@ -11,6 +11,56 @@
 		signInButton.addEventListener('click', () => {
 			container.classList.remove("right-panel-active");
 		});
+
+
+	$('#loginForm').bootstrapValidator({
+      fields: {
+        "email": {
+          validators: {
+            notEmpty: {
+              message: 'The email is required and cannot be empty'
+            }
+          }
+        },
+        "pwd": {
+          validators: {
+            notEmpty: {
+              message: 'The password is required and cannot be empty'
+            }
+          }
+        },
+        
+      }
+    });
+
+		$('#registerForm').bootstrapValidator({
+      fields: {
+        "name": {
+          validators: {
+            notEmpty: {
+              message: 'The name is required and cannot be empty'
+            }
+          }
+        },
+        "email": {
+          validators: {
+            notEmpty: {
+              message: 'The email is required and cannot be empty'
+            }
+          }
+        },
+				"pwd": {
+          validators: {
+            notEmpty: {
+              message: 'The password is required and cannot be empty'
+            }
+          }
+        },
+        
+      }
+    });
+
+
 	}
 
 </script>
@@ -23,23 +73,33 @@
     <div class="signUpLogin">
         <div class="container" id="container">
 	<div class="form-container sign-up-container">
-		<form action="#">
+		<form action="/beers/add" id="registerForm" method="post">
 			<h1>Create Account</h1>
-			<input type="text" placeholder="Name" />
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
-			<button>Sign Up</button>
+			<div class="form-group">
+				<input type="text" placeholder="Name" name="name"/>
+			</div>
+			<div class="form-group">
+				<input type="email" placeholder="Email" name="email"/>
+			</div>
+			<div class="form-group">
+				<input type="password" placeholder="Password" name="pwd"/>
+			</div>
+			<button id="signUpBtn" type="submit">Sign Up</button>
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
-		<form action="#">
+		<form action="/beers/add" id="loginForm" method="post">
 			<h1>Sign in</h1>
 
 			<span>or use your account</span>
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
+			<div class="form-group">
+				<input type="email" placeholder="Email" name="email"/>
+			</div>
+			<div class="form-group">
+				<input type="password" placeholder="Password" name="pwd"/>
+			</div>
 			<a href="#">Forgot your password?</a>
-			<button>Sign In</button>
+			<button id="signInBtn" type="submit">Sign In</button>
 		</form>
 	</div>
 	<div class="overlay-container">
