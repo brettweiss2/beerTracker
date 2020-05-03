@@ -3,6 +3,8 @@
     const arrowUpBtn = document.getElementById('arrowUp');
     const arrowDownBtn = document.getElementById('arrowDown');
     const rateNum = document.getElementById('rateNum');
+    const ratingInput = document.getElementById('ratingInput');
+
     const upClass = arrowUpBtn.getAttribute('class');
     const submitBtn = document.getElementById('submitBtn');
     document.getElementById('beerInfo').addEventListener('submit',function(e){
@@ -12,6 +14,7 @@
       let num = +rateNum.innerText;
 			if (num < 5) {
         rateNum.innerText = num + 0.5
+        ratingInput.value = num + 0.5
         arrowDownBtn.classList.remove("disabled");
       } else {
         arrowUpBtn.classList.add("disabled");
@@ -25,7 +28,8 @@
       }
       num = num - 0.5
 			if (num >= 0) {
-        rateNum.innerText = num
+        rateNum.innerText = num;
+        ratingInput.value = num;
         num <= 0 && arrowDownBtn.classList.add("disabled");
       }
 		});
@@ -60,7 +64,7 @@
             }
           }
         },
-        "reviewText": {
+        "comment": {
           validators: {
             notEmpty: {
               message: 'The review is required and cannot be empty'
@@ -109,11 +113,13 @@
           <div class="activity-list-title strong">Leave A Review</div>
           <div class="leave-review-box form-group">
             <div class="text-content form-group">
-              <textarea name="reviewText" id="" rows="5"></textarea>
+              <textarea name="comment" id="" rows="5"></textarea>
             </div>
             <div class="handle-box">
               <div class="rate-box">
-                <div class="rate-num"><span id="rateNum" name="rate">3</span>/5</div>
+                <div class="rate-num"><span id="rateNum" >3 </span>/5
+                  <input type="hidden" name="rating" value="3" id="ratingInput">
+                </div>
                 <div class="diamond">
                   <span class="arrow-up tete" id="arrowUp"></span>
                   <span class="arrow-bottom" id="arrowDown"></span>

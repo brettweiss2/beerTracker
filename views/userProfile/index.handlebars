@@ -1,5 +1,9 @@
 <script>
 	window.onload=function(){
+    let followBtn = document.getElementById('follow');
+    followBtn.addEventListener('click', () => {
+      console.log('follow user')
+    })
 		
 	}
 
@@ -19,7 +23,7 @@
             <li>Jane Doe</li>
             <li>Date of Birth: </li>
           </ul>
-          <button class="btn">Follow User Name</button>
+          <button class="btn" id="follow">Follow User Name</button>
         </div>
         <div class="recent-activity-list">
           <div class="activity-list-title strong">Recent Activity</div>

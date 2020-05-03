@@ -908,6 +908,10 @@ body
 
   }
 
+  /* button[disabled] {
+    opacity: 0.4;
+  } */
+
   html, body, header, main {
     width: 100%;
     height: 100%;

@@ -7,11 +7,14 @@
     const arrowUpBtn = document.getElementById('arrowUp');
     const arrowDownBtn = document.getElementById('arrowDown');
     const rateNum = document.getElementById('rate-num');
+    const ratingInput = document.getElementById('ratingInput');
     const upClass = arrowUpBtn.getAttribute('class');
+
     arrowUpBtn.addEventListener('click', () => {
       let num = +rateNum.innerText;
 			if (num < 5) {
-        rateNum.innerText = num + 0.5
+        rateNum.innerText = num + 0.5;
+        ratingInput.value = num + 0.5;
         arrowDownBtn.classList.remove("disabled");
       } else {
         arrowUpBtn.classList.add("disabled");
@@ -26,9 +29,54 @@
       num = num - 0.5
 			if (num >= 0) {
         rateNum.innerText = num
+        ratingInput.value = num;
         num <= 0 && arrowDownBtn.classList.add("disabled");
       }
 		});
+
+    $('#addReviewForm').bootstrapValidator({
+      fields: {
+        "comment": {
+          validators: {
+            notEmpty: {
+              message: 'The review is required and cannot be empty'
+            }
+          }
+        },
+        
+      }
+    });
+
+    let prePageBtn = document.getElementById('prePage');
+    let nextPageBtn = document.getElementById('nextPage');
+    let form = document.getElementById('paginator');
+    let total = {{total}};
+    let page = {{page}};
+    let size = {{size}};
+    let totalPage = parseInt(total / size);
+    if (total % size > 0) {
+      totalPage += 1;
+    } 
+    console.log('*****', totalPage, page)
+    if (page == 1) {
+      prePageBtn.classList.add("disabled");
+    } else if (totalPage == page){
+      nextPageBtn.classList.add("disabled");
+    } else {
+      prePageBtn.classList.remove("disabled");
+      nextPageBtn.classList.remove("disabled");
+    }
+    nextPageBtn.addEventListener('click', () => {
+      if (page >= totalPage) {return}
+      document.getElementById("page").value = page + 1;
+      form.submit();
+    })
+    prePageBtn.addEventListener('click', () => {
+      if (page <= 1) {return}
+      document.getElementById("page").value = page - 1;
+      form.submit();
+    })
+
   }
 
 </script>
@@ -56,20 +104,28 @@
         </div>
         <div class="recent-activity-list">
           <div class="activity-list-title strong">Leave A Review</div>
-          <div class="leave-review-box">
-            <div class="text-content">
-              <textarea name="" id="" rows="5"></textarea>
-            </div>
-            <div class="handle-box">
-              <div class="rate-box">
-                <div class="rate-num"><span id="rate-num">3</span>/5</div>
-                <div class="diamond">
-                  <span class="arrow-up tete" id="arrowUp"></span>
-                  <span class="arrow-bottom" id="arrowDown"></span>
+
+          <form action="#" method="post" id="addReviewForm">
+            <div class="leave-review-box">
+                <div class="text-content form-group">
+                  <textarea id="" rows="5" name="comment"></textarea>
                 </div>
+
+                <div class="handle-box">
+                  <div class="rate-box">
+                    <div class="rate-num">
+                      <span id="rate-num" name="rate">3</span>/5
+                      <input type="hidden" id="ratingInput" name="rating" value="3">
+                    </div>
+                    <div class="diamond">
+                      <span class="arrow-up tete" id="arrowUp"></span>
+                      <span class="arrow-bottom" id="arrowDown"></span>
+                    </div>
+                  </div>
+                  <button class="submit-btn" type="submit">Submit Review</button>
               </div>
-              <button class="submit-btn">Submit Review</button>
-            </div>
+            </form>
+
           </div>
           <div class="reviews-title strong">Reviews</div>
           <ul>
@@ -82,11 +138,18 @@
               <div class="user-name">By: User Name</div>
             </li>
           </ul>
+          <form id="paginator" action="#" method="post">
           <div class="page-turner">
-            <span class="btn pre"> < </span>
-            <span>1</span>
-            <span class="btn next"> > </span>
+            <span class="btn pre " id="prePage" name="prePage">
+              <
+            </span>
+            <span>{{page}}</span>
+            <input type="hidden" name="page" id="page" value={{page}}>
+            <span class="btn next" id="nextPage"> 
+              >
+            </span>
           </div>
+          </form>
         </div>
       </div>
       <div class="beerPage-right">

@@ -28,7 +28,10 @@ const constructorMethod = (app) => {
 
     app.get('/beerPage',(req, res) =>{
         res.render('beerPage/index', {
-            rateNum: '3',
+            total: '1',
+            page: 1,
+            size: 2,
+            total: 10,
         });
     })
 
