@@ -5,24 +5,25 @@ const beerData = data.beers;
 
 
 
-//to post a beer
-router.get('/post', async (req, res) =>{
-    const beerList = await beerData.getAllBeers();
-
-    res.render('beers/post',{beers: beerList})
+router.get('/beerSubmission',(req, res) =>{
+	if(!req.session.user){
+		res.render('beerSubmission/index')
+	}else(res.render('beerSubmission/indexLogged'))
 })
 
+
+
+
+router.get('/beersList',async(req, res) =>{
+	const beerList = await beerData.getAllBeers(1, 4);
+
+	if(!req.session.user){
+		res.render('beersList/index',{beers: beerList})
+	}else(res.render('beersList/indexLogged',{beers: beerList}))
+})
 
 // get all beers
-router.get('/', async (req, res) =>{
-	let query = req.query;
-	console.log(query.page)
-	console.log(query.size)
 
-		const beerList = await beerData.getAllBeers(1, 4);
-		console.log('^^^^', beerList)
-    res.render('beersList/index',{beers: beerList})
-})
 
 
 //get specific one with that id
@@ -36,10 +37,10 @@ router.get('/:id', async (req, res) =>{
 })
 
 
-router.post('/', async (req, res) => {
+router.post('/beerSubmission', async (req, res) => {
 	let beerPost = req.body;
 	let errors = [];
-
+	beerPost.abv = parseInt(beerPost.abv)
 	if (!beerPost.name) {
 		errors.push('No name provided');
 	}
@@ -60,13 +61,23 @@ router.post('/', async (req, res) => {
 	if (!beerPost.notes) {
 		errors.push('No notes provided');
 	}
+	if (beerPost.abv < 0 || beerPost.abv > 100) {
+		errors.push("abv must be between 0 and 100")
+	}
+
+	if (typeof(beerPost.abv) !== "number") {
+		errors.push("abv must be a number")
+	}
+
+
+
 
 
 
 
 
 	if (errors.length > 0) {
-		res.render('beers/post', {
+		res.render('beerSubmission/index', {
 			errors: errors,
 			hasErrors: true,
 
@@ -90,7 +101,7 @@ router.post('/', async (req, res) => {
 			
 		);
 
-		res.redirect(`/beers`);
+		res.redirect(`/beers/beersList`);
 	} catch (e) {
 		res.status(500).json({ error: e });
 	}
