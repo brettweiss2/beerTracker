@@ -10,7 +10,7 @@ const saltRounds = 12;
 router.get('/', async(req,res) => {
 	if(!req.session.user){
 		res.render('signUpLogin/index')
-	}else(res.redirect('http://localhost:3000/userProfile'))
+	}else(res.redirect('http://localhost:3000/dashBoard'))
 });
 
 router.post('/login', async (req,res) => {
@@ -25,11 +25,12 @@ router.post('/login', async (req,res) => {
                         id: user["id"],
                         email: user["email"]
                         }
-                    return res.redirect('http://localhost:3000/userProfile')
+                    return res.redirect('http://localhost:3000/dashBoard')
                 }else{
                     error='The email or password you enter is wrong, try again'
                     res.status(401).render('signUpLogin',{
-                    error: error
+                    hasErrors: true,
+                    errors: error
                     })
                 }
     
@@ -37,7 +38,8 @@ router.post('/login', async (req,res) => {
     }catch(e){ 
         error='The email or password you enter is wrong, try again'
         res.status(401).render('signUpLogin',{
-		error: error
+            hasErrors: true,
+		    errors: error
 	    })
         }
 
@@ -50,12 +52,17 @@ router.post('/login', async (req,res) => {
 
 router.post('/signUp', async(req,res) =>{
     const{email,password,firstName,lastName,city,state,country} = req.body;
+    errors = [];
     try{
         try{
             let user = await userData.getUserByEmail(email);
             if(user){
-                console.log("the email is already registered")
-                res.redirect('/')
+                e = "This email has been registered"
+                res.status(401).render('signUpLogin',{
+                    errors: e,
+                    hasErrors: true,
+
+                })
             }
         }catch(e){
             const hassPassword = await bcrypt.hash(password,saltRounds)
@@ -64,7 +71,7 @@ router.post('/signUp', async(req,res) =>{
                 id: newUser['id'],
                 email: newUser['email']
             }
-            res.redirect('http://localhost:3000/userProfile')
+            res.redirect('http://localhost:3000/dashBoard')
         }
 
     }catch(e){
@@ -72,15 +79,10 @@ router.post('/signUp', async(req,res) =>{
 
     }
 
-
-
-    router.get('/logout',async(req,res) =>{
-        req.session.destroy();
-        res.redirect('/')
-    })
-
-
-
+})
+router.get('/logout',async(req,res) =>{
+    req.session.destroy();
+    res.redirect('/')
 })
 
 

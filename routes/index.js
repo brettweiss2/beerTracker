@@ -5,23 +5,38 @@ const signUpLoginRoutes = require('./signUpLogin')
 const constructorMethod = (app) => {
 	app.use('/beers', beerRoutes);
 
-    app.get('/',(req, res) =>{
-        res.render('home/index');
-    })
 
-    app.use('/signUpLogin',signUpLoginRoutes)
+    app.get('/', async(req,res) => {
+        if(!req.session.user){
+            res.render('home/index')
+        }else(res.render('home/indexLogged'))
+    });
 
-    app.get('/beersList',(req, res) =>{
-        res.render('beersList/index');
-    })
 
     app.get('/userProfile',(req, res) =>{
-        res.render('userProfile/index');
+        if(!req.session.user){
+            res.render('userProfile/index')
+        }else(res.render('userProfile/indexLogged'))
     })
 
     app.get('/dashboard',(req, res) =>{
-        res.render('dashboard/index');
+        if(!req.session.user){
+            res.render('home/index')
+        }else(res.render('dashboard/index'))
     })
+
+    app.get('/beersList',(req, res) =>{
+        if(!req.session.user){
+            res.render('beersList/index')
+        }else(res.render('beersList/indexLogged'))
+    })
+
+
+    app.use('/signUpLogin',signUpLoginRoutes)
+
+
+
+
 
     app.get('/beerPage',(req, res) =>{
         res.render('beerPage/index', {
@@ -29,9 +44,7 @@ const constructorMethod = (app) => {
         });
     })
 
-    app.get('/beerSubmission',(req, res) =>{
-        res.render('beerSubmission/index');
-    })
+
 
 
 	app.use('*', (req, res) => {

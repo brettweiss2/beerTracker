@@ -14,7 +14,14 @@
 	}
 
 </script>
-
+    <header>
+        <div class="topnav">
+            <img id="logo" src="../../public/assets/beer logo.png">
+            <a id= "websiteName"href="/">Beer Tracker</a>
+                <div class="signUpLoginNav">
+            </div>
+        </div>
+    </header>
 <div>
     <div id="bg">
         <img src="../../public/assets/homepic.jpg">
@@ -33,6 +40,15 @@
 			<input type="text" name='state' placeholder="State" />
 			<input type="text" name='country'placeholder="Country" />
 			<button type='submit'>Sign Up</button>
+                 {{#if hasErrors}}
+                  <ul class="error-list">
+                    {{#each errors}}
+                    <li>
+                      {{this}}
+                    </li>
+                    {{/each}}
+                  </ul>
+                  {{/if}} 
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
@@ -45,9 +61,15 @@
 			<a href="#">Forgot your password?</a>
 			<button type='submit'> Sign In</button>
 		</form>
-			{{#if error}}
-    			<p> You need a vaild username or password</p>
-  			{{/if}}
+                 {{#if hasErrors}}
+                  <ul class="error-list">
+                    {{#each errors}}
+                    <li>
+                      {{this}}
+                    </li>
+                    {{/each}}
+                  </ul>
+                  {{/if}} 
 	</div>
 	<div class="overlay-container">
 		<div class="overlay">
