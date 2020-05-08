@@ -40,9 +40,9 @@
 			<input type="text" name='state' placeholder="State" />
 			<input type="text" name='country'placeholder="Country" />
 			<button type='submit'>Sign Up</button>
-                 {{#if hasErrors}}
-                  <ul class="error-list">
-                    {{#each errors}}
+                 {{#if hasError}}
+                  <ul>
+                    {{#each error}}
                     <li>
                       {{this}}
                     </li>
@@ -50,6 +50,7 @@
                   </ul>
                   {{/if}} 
 		</form>
+
 	</div>
 	<div class="form-container sign-in-container">
 		<form action="/signUpLogin/login" method="POST" id = 'login_form'>
@@ -58,11 +59,8 @@
 			<span>or use your account</span>
 			<input type="email" name = 'email' placeholder="Email" />
 			<input type="text" name = 'password'placeholder="Password" />
-			<a href="#">Forgot your password?</a>
-			<button type='submit'> Sign In</button>
-		</form>
                  {{#if hasErrors}}
-                  <ul class="error-list">
+                  <ul>
                     {{#each errors}}
                     <li>
                       {{this}}
@@ -70,6 +68,10 @@
                     {{/each}}
                   </ul>
                   {{/if}} 
+			<a href="#">Forgot your password?</a>
+			<button type='submit'> Sign In</button>
+		</form>
+
 	</div>
 	<div class="overlay-container">
 		<div class="overlay">
