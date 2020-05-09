@@ -76,6 +76,22 @@ module.exports = {
     },
 
     /**
+     * Searching beer by the name, this function is build for search bar
+     * @param {*} name 
+     * return the beer come with that name
+     */
+    async getBeerByName(name){
+        if (!name) throw new Error("Must provide the user's ID");
+
+        const beerCollection = await beers();
+        const result = await beerCollection.findOne({name: name});
+        if (result === null) throw new Error("No user with that Name");
+
+        return result;
+    },
+
+
+    /**
      * Removes a beer by ID from the database
      * @param {string} id state
      */
