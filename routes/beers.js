@@ -11,7 +11,45 @@ router.get('/beerSubmission',(req, res) =>{
 	}else(res.render('beerSubmission/indexLogged'))
 })
 
+router.post('/beersList/search',async (req, res) =>{
+	search = req.body;
+	beerName = search.beer_search
+	HasSearch_error = false;
+	search_error = [];
+	try{
+		const beerProd = await beerData.getBeerByName(beerName);
+		console.log("Found!")
+		if(!req.session.user){
+			res.render('beersList/index',{
+				searchResult: true,
+				name: beerProd.name,
+				type: beerProd.type,
+				abv: beerProd.abv,
+				malt: beerProd.malt,
+				hops: beerProd.hops
+			})
+		}else(res.render('beersList/indexLogged',{
+			searchResult: true,
+			name: beerProd.name,
+			type: beerProd.type,
+			abv: beerProd.abv,
+			malt: beerProd.malt,
+			hops: beerProd.hops
+		}))
+	}catch{
+		search_error.push("Can not find that one you search, try another")
+		HasSearch_error = true;
+		if(!req.session.user){
+			res.render('beersList/index',{
+				HasSearch_error : true,
+				search_error : search_error
+			})
+		}else(res.render('beersList/indexLogged',{
+				HasSearch_error : true,
+				search_error : search_error}))
+	}
 
+})
 
 
 router.get('/beersList',async(req, res) =>{
