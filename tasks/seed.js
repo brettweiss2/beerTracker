@@ -9,13 +9,18 @@ const main = async () => {
 	await db.dropDatabase();
 
     //users
+
+    //preset password same as lab 10 
+    //elementarymydearwatson : $2a$16$7JKSiEmoP3GNDSalogqgPu0sUbwder7CAN/5wnvCWe6xCKAKwlTD.
+    //damnyoujackdonaghy : $2a$16$SsR2TGPD24nfBpyRlBzINeGU61AH0Yo/CbgfOlU1ajpjnPuiQaiDm
+    //quidditch : $2a$16$4o0WWtrq.ZefEmEbijNCGukCezqWTqz1VWlPm/xnaLM8d3WlS5pnK
     let brett = await users.addUser("bweiss@stevens.edu", "$2a$16$7JKSiEmoP3GNDSalogqgPu0sUbwder7CAN/5wnvCWe6xCKAKwlTD.", "Brett", "Weiss", "Pine Beach", "New Jersey", "USA");
     let john = await users.addUser("john@smith.com", "$2a$16$SsR2TGPD24nfBpyRlBzINeGU61AH0Yo/CbgfOlU1ajpjnPuiQaiDm", "John", "Smith", "NYC", "NY", "USA");
-    let jane = await users.addUser("jane@doe.com", "pw", "Jane", "Doe", "Austin", "TX", "USA");
-    let steve = await users.addUser("steve@wilkos.com", "pw", "Steve", "Wilkos", "Madison", "WI", "USA");
-    let justin = await users.addUser("justin@williams.com", "pw", "Justin", "Williams", "Reno", "NV", "USA");
-    let phil = await users.addUser("phil@rogers.com", "pw", "Phil", "Rogers", "Dover", "DE", "USA");
-    let mike = await users.addUser("mike@jones.com", "pw", "Mike", "Jones", "Denver", "CO", "USA");
+    let jane = await users.addUser("jane@doe.com", "$2a$16$4o0WWtrq.ZefEmEbijNCGukCezqWTqz1VWlPm/xnaLM8d3WlS5pnK", "Jane", "Doe", "Austin", "TX", "USA");
+    let steve = await users.addUser("steve@wilkos.com", "$2a$16$7JKSiEmoP3GNDSalogqgPu0sUbwder7CAN/5wnvCWe6xCKAKwlTD.", "Steve", "Wilkos", "Madison", "WI", "USA");
+    let justin = await users.addUser("justin@williams.com", "$2a$16$SsR2TGPD24nfBpyRlBzINeGU61AH0Yo/CbgfOlU1ajpjnPuiQaiDm", "Justin", "Williams", "Reno", "NV", "USA");
+    let phil = await users.addUser("phil@rogers.com", "$2a$16$4o0WWtrq.ZefEmEbijNCGukCezqWTqz1VWlPm/xnaLM8d3WlS5pnK", "Phil", "Rogers", "Dover", "DE", "USA");
+    let mike = await users.addUser("mike@jones.com", "$2a$16$7JKSiEmoP3GNDSalogqgPu0sUbwder7CAN/5wnvCWe6xCKAKwlTD.", "Mike", "Jones", "Denver", "CO", "USA");
 
     //beers
     let smonkey = await beers.addBeer(
