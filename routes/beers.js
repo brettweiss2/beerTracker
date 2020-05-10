@@ -7,7 +7,7 @@ const beerData = data.beers;
 
 router.get('/beerSubmission',(req, res) =>{
 	if(!req.session.user){
-		res.render('beerSubmission/index')
+		res.render('signUpLogin/index')
 	}else(res.render('beerSubmission/indexLogged'))
 })
 
@@ -18,10 +18,10 @@ router.post('/beersList/search',async (req, res) =>{
 	search_error = [];
 	try{
 		const beerProd = await beerData.getBeerByName(beerName);
-		console.log("Found!")
 		if(!req.session.user){
 			res.render('beersList/index',{
 				searchResult: true,
+				id: beerProd._id,
 				name: beerProd.name,
 				type: beerProd.type,
 				abv: beerProd.abv,
@@ -30,6 +30,7 @@ router.post('/beersList/search',async (req, res) =>{
 			})
 		}else(res.render('beersList/indexLogged',{
 			searchResult: true,
+			id: beerProd._id,
 			name: beerProd.name,
 			type: beerProd.type,
 			abv: beerProd.abv,
@@ -65,10 +66,12 @@ router.get('/beersList',async(req, res) =>{
 
 
 //get specific one with that id
-router.get('/:id', async (req, res) =>{
+router.get('/beersList/:id', async (req, res) =>{
     try{
-        const beer = await beerData.getBeer(req.params.id);
-        res.render('beers/single', {beer: beer});
+		const beer = await beerData.getBeer(req.params.id);
+		if(!req.session.user){
+			res.render('beerPage/index',{beer: beer})
+		}else(res.render('beerPage/indexLogged',{beer: beer}))
     } catch(e){
         res.status(500).json({ error: e });
     }
