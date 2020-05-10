@@ -10,7 +10,6 @@
         <img id="logo" src="../../public/assets/beer logo.png">
         <a id= "websiteName"href="/">Beer Tracker</a>
             <div class="signUpLoginNav">
-            <a href ="/beers/beerSubmission">Post a beer</a>
             <a href="/signUpLogin">Sign Up or Login</a>
         </div>
     </div>
@@ -38,10 +37,10 @@
           <div class="result-desc">Search Results for <span class="strong">Beer Name/Brand</span></div>
           <ul>
             {{#if searchResult}}
-                            <li class="beer-item-box clearfix">
+              <li class="beer-item-box clearfix">
               <div class="beer-left">
                 <div class="beer-filed strong">
-                  {{name}}
+                  <a href = "/beers/beersList/{{id}}">{{name}}</a>
                 </div>
                 <div class="beer-filed">
                   type: {{type}}
@@ -59,7 +58,6 @@
                 </div>
               </div>
             </li>
-
             {{/if}}
 
             {{#if HasSearch_error}}
@@ -70,7 +68,7 @@
             <li class="beer-item-box clearfix">
               <div class="beer-left">
                 <div class="beer-filed strong">
-                  {{name}}
+                  <a href = "/beers/beersList/{{_id}}">{{name}}</a>
                 </div>
                 <div class="beer-filed">
                   type: {{type}}

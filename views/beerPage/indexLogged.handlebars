@@ -38,8 +38,9 @@
             <img id="logo" src="../../public/assets/beer logo.png">
             <a id= "websiteName"href="/">Beer Tracker</a>
                 <div class="signUpLoginNav">
-                <a href="/beers/beersList">Beers</a>
-                <a href="/signUpLogin">Sign Up or Login</a>
+                <a href="/beers/beersList">Beers</a>   
+                <a href="/dashBoard">DashBoard</a>
+                <a href="/signUpLogin/logout">logout</a>
             </div>
         </div>
     </header>
@@ -67,10 +68,21 @@
           </ul>
         </div>
         <div class="recent-activity-list">
+          <div class="activity-list-title strong">Leave A Review</div>
           <div class="leave-review-box">
             <div class="text-content">
+              <textarea name="" id="" rows="5"></textarea>
             </div>
-
+            <div class="handle-box">
+              <div class="rate-box">
+                <div class="rate-num"><span id="rate-num">3</span>/5</div>
+                <div class="diamond">
+                  <span class="arrow-up tete" id="arrowUp"></span>
+                  <span class="arrow-bottom" id="arrowDown"></span>
+                </div>
+              </div>
+              <button class="submit-btn">Submit Review</button>
+            </div>
           </div>
           <div class="reviews-title strong">Reviews</div>
           <ul>

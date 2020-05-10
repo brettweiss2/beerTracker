@@ -29,22 +29,11 @@ router.post('/login', async (req,res) => {
                     return res.redirect('http://localhost:3000/dashBoard')
                 }else{
                     errors.push('The email or password you enter is wrong, try again')
-                    console.log("Error1")
-                    // res.render('signUpLogin/index',{
-                    // hasErrors: true,
-                    // errors: errors
-                    // })
-                    // return;
                 }
     
         }
     }catch(e){ 
         errors.push('The email or password you enter is wrong, try again')
-        // res.render('signUpLogin',{
-        //     hasErrors: true,
-		//     errors: error
-        // })
-        // return;
         }
 
     
@@ -65,9 +54,10 @@ router.post('/login', async (req,res) => {
 
 router.post('/signUp', async(req,res) =>{
     const{email,password,firstName,lastName,city,state,country} = req.body;
+    email_L = email.toLowerCase()
     error = [];
 
-    if(!email){
+    if(!email_L){
         error.push("Please provied email")
     }
     if(!password){
@@ -91,14 +81,14 @@ router.post('/signUp', async(req,res) =>{
 
 
     try{
-        let user = await userData.getUserByEmail(email);
+        let user = await userData.getUserByEmail(email_L);
         if(user){
             error.push("This email has been registered")
 
         }}catch(e){
             const hassPassword = await bcrypt.hash(password,saltRounds)
             try{
-                let newUser = await userData.addUser(email,hassPassword,firstName,lastName,city,state,country);
+                let newUser = await userData.addUser(email_L,hassPassword,firstName,lastName,city,state,country);
                 req.session.user={
                     id: newUser['id'],
                     email: newUser['email']
