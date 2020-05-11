@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const data = require('../data');
 const beerData = data.beers;
+const reviewData = data.reviews;
 
 
 
@@ -76,6 +77,22 @@ router.get('/beersList/:id', async (req, res) =>{
         res.status(500).json({ error: e });
     }
 })
+
+
+router.post('/beersList/:id', async (req, res) =>{
+	rate = parseInt(req.body.rating);
+	const newReview = await reviewData.addReview(
+		req.session.user.id,
+		req.params.id,
+		rate,
+		req.body.comment
+	);
+
+	res.render('partials/reviews',{
+		layout: null,
+		...newReview
+	})
+});
 
 
 router.post('/beerSubmission', async (req, res) => {

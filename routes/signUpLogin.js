@@ -23,7 +23,7 @@ router.post('/login', async (req,res) => {
             let match = await bcrypt.compare(password,hashCode)
                 if(match){
                     req.session.user = {
-                        id: user["id"],
+                        id: user["_id"],
                         email: user["email"]
                         }
                     return res.redirect('http://localhost:3000/dashBoard')
