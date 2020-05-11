@@ -68,6 +68,9 @@ module.exports = {
         return result;
     },
 
+
+
+
     /**
      * Gets all reviews from the database
      * @returns the reviews as an array

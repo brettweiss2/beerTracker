@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const data = require('../data');
 const beerData = data.beers;
+const reviewData = data.reviews;
 
 
 
@@ -68,14 +69,42 @@ router.get('/beersList',async(req, res) =>{
 //get specific one with that id
 router.get('/beersList/:id', async (req, res) =>{
     try{
+		const review = await reviewData.getAllReviews();
+		reviewWithBeer = []
+		for (i in(review)){
+			if(review[i].beer === req.params.id){
+				reviewWithBeer.push(review[i]);
+			}
+		}
 		const beer = await beerData.getBeer(req.params.id);
 		if(!req.session.user){
-			res.render('beerPage/index',{beer: beer})
-		}else(res.render('beerPage/indexLogged',{beer: beer}))
+			res.render('beerPage/index',{
+				beer: beer,
+				reviews: reviewWithBeer})
+		}else(res.render('beerPage/indexLogged',{
+			beer: beer,
+			reviews: reviewWithBeer
+			}))
     } catch(e){
         res.status(500).json({ error: e });
     }
 })
+
+
+router.post('/beersList/:id', async (req, res) =>{
+	rate = parseInt(req.body.rating);
+	const newReview = await reviewData.addReview(
+		req.session.user.id,
+		req.params.id,
+		rate,
+		req.body.comment
+	);
+
+	res.render('partials/reviews',{
+		layout: null,
+		...newReview
+	})
+});
 
 
 router.post('/beerSubmission', async (req, res) => {

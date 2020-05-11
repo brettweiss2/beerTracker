@@ -58,7 +58,6 @@ module.exports = {
         if (!id) throw new Error("Must provide the beer's ID");
         if (typeof id !== "string") throw new Error("ID must be a string");
         const objId = ObjectId.createFromHexString(id);
-
         const beerCollection = await beers();
         const result = await beerCollection.findOne({_id: objId});
         if (result === null) throw new Error("No beer with that ID");

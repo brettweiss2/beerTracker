@@ -32,6 +32,11 @@
   }
 
 </script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>
+
 
     <header>
         <div class="topnav">
@@ -67,6 +72,11 @@
               </p>
           </ul>
         </div>
+              <form id = 'new-review-form'>
+                  <input type = 'number' id = 'new-review-rate'>
+                  <textarea name="comment" id="new-review" rows="5"></textarea>
+                  <input type='submit' value='Submit a new review' />
+              </form>
         <div class="recent-activity-list">
           <div class="activity-list-title strong">Leave A Review</div>
           <div class="leave-review-box">
@@ -86,14 +96,26 @@
           </div>
           <div class="reviews-title strong">Reviews</div>
           <ul>
-            <li class="common-activity-item">
+                <div class="col-sm-12 col-md-6" id="reviews-area">
+
+                    {{#each reviews}} 
+                    <div>{{rating }}</div> 
+                    <div>{{comment}}</div>
+                    
+                    
+                    {{/each}}
+
+                    </div>
+
+
+            {{!-- <li class="common-activity-item">
               <div class="desc">This is the best beer out there. The sour taste is for sure an aquired taste, but I find it delicious and strong enough to just sip.</div>
               <div class="user-name">By: User Name</div>
             </li>
             <li class="common-activity-item">
               <div class="desc">This is the best beer out there. The sour taste is for sure an aquired taste, but I find it delicious and strong enough to just sip.</div>
               <div class="user-name">By: User Name</div>
-            </li>
+            </li> --}}
           </ul>
           <div class="page-turner">
             <span class="btn pre"> < </span>
@@ -152,3 +174,6 @@
   </div>
    
 </div>
+
+
+<script src="/public/js/basic_ajax.js"></script>

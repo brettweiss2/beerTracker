@@ -33,6 +33,8 @@
 
 </script>
 
+
+
     <header>
         <div class="topnav">
             <img id="logo" src="../../public/assets/beer logo.png">
@@ -74,14 +76,16 @@
           </div>
           <div class="reviews-title strong">Reviews</div>
           <ul>
-            <li class="common-activity-item">
-              <div class="desc">This is the best beer out there. The sour taste is for sure an aquired taste, but I find it delicious and strong enough to just sip.</div>
-              <div class="user-name">By: User Name</div>
-            </li>
-            <li class="common-activity-item">
-              <div class="desc">This is the best beer out there. The sour taste is for sure an aquired taste, but I find it delicious and strong enough to just sip.</div>
-              <div class="user-name">By: User Name</div>
-            </li>
+                <div class="col-sm-12 col-md-6" id="reviews-area">
+
+                    {{#each reviews}} 
+                    <div>{{rating }}</div> 
+                    <div>{{comment}}</div>
+                    
+                    
+                    {{/each}}
+
+                    </div>
           </ul>
           <div class="page-turner">
             <span class="btn pre"> < </span>
@@ -140,3 +144,5 @@
   </div>
    
 </div>
+
+<script src="/public/js/basic_ajax.js"></script>
