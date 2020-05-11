@@ -32,7 +32,6 @@
   }
 
 </script>
-<script src="/public/js/basic_ajax.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
@@ -97,14 +96,26 @@
           </div>
           <div class="reviews-title strong">Reviews</div>
           <ul>
-            <li class="common-activity-item">
+                <div class="col-sm-12 col-md-6" id="reviews-area">
+
+                    {{#each reviews}} 
+                    <div>{{rating }}</div> 
+                    <div>{{comment}}</div>
+                    
+                    
+                    {{/each}}
+
+                    </div>
+
+
+            {{!-- <li class="common-activity-item">
               <div class="desc">This is the best beer out there. The sour taste is for sure an aquired taste, but I find it delicious and strong enough to just sip.</div>
               <div class="user-name">By: User Name</div>
             </li>
             <li class="common-activity-item">
               <div class="desc">This is the best beer out there. The sour taste is for sure an aquired taste, but I find it delicious and strong enough to just sip.</div>
               <div class="user-name">By: User Name</div>
-            </li>
+            </li> --}}
           </ul>
           <div class="page-turner">
             <span class="btn pre"> < </span>
@@ -163,3 +174,6 @@
   </div>
    
 </div>
+
+
+<script src="/public/js/basic_ajax.js"></script>

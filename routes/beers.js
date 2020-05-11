@@ -69,10 +69,22 @@ router.get('/beersList',async(req, res) =>{
 //get specific one with that id
 router.get('/beersList/:id', async (req, res) =>{
     try{
+		const review = await reviewData.getAllReviews();
+		reviewWithBeer = []
+		for (i in(review)){
+			if(review[i].beer === req.params.id){
+				reviewWithBeer.push(review[i]);
+			}
+		}
 		const beer = await beerData.getBeer(req.params.id);
 		if(!req.session.user){
-			res.render('beerPage/index',{beer: beer})
-		}else(res.render('beerPage/indexLogged',{beer: beer}))
+			res.render('beerPage/index',{
+				beer: beer,
+				reviews: reviewWithBeer})
+		}else(res.render('beerPage/indexLogged',{
+			beer: beer,
+			reviews: reviewWithBeer
+			}))
     } catch(e){
         res.status(500).json({ error: e });
     }

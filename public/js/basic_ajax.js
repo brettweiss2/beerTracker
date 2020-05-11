@@ -39,8 +39,6 @@
         if (newReview){
             var requestConfig = {
                 method: "POST",
-                url: '/reviews',
-                contentType: 'application/json',
                 data: {
                     rating: newRate,
                     comment: newReview
