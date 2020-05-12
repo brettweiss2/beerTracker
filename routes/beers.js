@@ -38,7 +38,7 @@ router.post('/beersList/search',async (req, res) =>{
 			malt: beerProd.malt,
 			hops: beerProd.hops
 		}))
-	}catch{
+	}catch (e){
 		search_error.push("Can not find that one you search, try another")
 		HasSearch_error = true;
 		if(!req.session.user){
