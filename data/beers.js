@@ -1,4 +1,3 @@
-
 const mongoCollections = require("../config/mongoCollections");
 const beers = mongoCollections.beers;
 const { ObjectId } = require('mongodb');

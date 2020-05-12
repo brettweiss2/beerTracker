@@ -5,12 +5,10 @@ const data = require('../data');
 const userData = data.users;
 const saltRounds = 12;
 
-
-
 router.get('/', async(req,res) => {
 	if(!req.session.user){
 		res.render('signUpLogin/index')
-	}else(res.redirect('http://localhost:3000/dashBoard'))
+	}else(res.redirect('/dashBoard'))
 });
 
 router.post('/login', async (req,res) => {
@@ -21,36 +19,33 @@ router.post('/login', async (req,res) => {
         if(user["email"]==email){
             const hashCode = user["hashedPassword"]
             let match = await bcrypt.compare(password,hashCode)
-                if(match){
-                    req.session.user = {
-                        id: user["_id"],
-                        email: user["email"]
-                        }
-                    return res.redirect('http://localhost:3000/dashBoard')
-                }else{
-                    errors.push('The email or password you enter is wrong, try again')
+            if(match){
+                req.session.user = {
+                    id: user["_id"],
+                    email: user["email"],
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    city: user.city,
+                    state: user.state,
+                    country: user.country
                 }
-    
+                return res.redirect('http://localhost:3000/dashBoard')
+            }else{
+                errors.push('The email or password you enter is wrong, try again')
+            }
         }
     }catch(e){ 
         errors.push('The email or password you enter is wrong, try again')
-        }
+    }
 
-    
-    	if (errors.length > 0) {
-            res.render('signUpLogin/index', {
-                hasErrors: true,
-                errors: errors
-
-    
-            });
-            return;
-        }
-	
-})
-
-
-
+    if (errors.length > 0) {
+        res.render('signUpLogin/index', {
+            hasErrors: true,
+            errors: errors
+        });
+        return;
+    }
+});
 
 router.post('/signUp', async(req,res) =>{
     const{email,password,firstName,lastName,city,state,country} = req.body;
@@ -79,7 +74,6 @@ router.post('/signUp', async(req,res) =>{
         error.push("Please provide country")
     }
 
-
     try{
         let user = await userData.getUserByEmail(email_L);
         if(user){
@@ -91,7 +85,12 @@ router.post('/signUp', async(req,res) =>{
                 let newUser = await userData.addUser(email_L,hassPassword,firstName,lastName,city,state,country);
                 req.session.user={
                     id: newUser['id'],
-                    email: newUser['email']
+                    email: newUser['email'],
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    city: user.city,
+                    state: user.state,
+                    country: user.country
                 }
                 res.redirect('http://localhost:3000/dashBoard')}
             catch(e){
@@ -99,22 +98,18 @@ router.post('/signUp', async(req,res) =>{
             }
         }
 
-
-        if (error.length > 0) {
-            res.render('signUpLogin/index', {
-                error: error,
-                hasError: true,
-    
-            });
-            return;
-        }})
-
-
+    if (error.length > 0) {
+        res.render('signUpLogin/index', {
+            error: error,
+            hasError: true,
+        });
+        return;
+    }
+});
 
 router.get('/logout',async(req,res) =>{
     req.session.destroy();
     res.redirect('/')
-})
-
+});
 
 module.exports = router;

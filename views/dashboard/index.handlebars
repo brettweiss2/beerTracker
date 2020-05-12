@@ -5,7 +5,6 @@
 
 </script>
 
-
 <header>
     <div class="topnav">
         <img id="logo" src="../../public/assets/beer logo.png">
@@ -26,15 +25,13 @@
       <div class="beer-content-common userProfile-left">
         <div class="common-info user-info">
           <ul>
-            <li class="strong">User Name</li>
-            <li>Location: </li>
-            <li>Jane Doe</li>
-            <li>Date of Birth: </li>
+            <li class="strong">{{firstName}} {{lastName}}</li>
+            <li>{{city}}, {{state}}, {{country}}</li>
           </ul>
         </div>
         <div class="recent-content">
           <div class="recent-reviews box-border">
-            <div class="top-title">Recent Reviews</div>
+            <div class="top-title">Recent Comments</div>
             <div class="recent-reviews-list">
               <ul>
                 <li class="recent-review-item">
@@ -59,7 +56,7 @@
           </div>
           <div class="recent-beer-submissions box-border">
             <div class="top-title">
-              Recent Beer Submissions
+              Recent Reviews
               <div class="diamond">
                 <span class="arrow-up"></span>
                 <span class="arrow-bottom"></span>
@@ -112,43 +109,22 @@
             </div>
           </div>
         </div>
-          
       </div>
       <div class="beer-content-common userProfile-right">
         <div class="top-title strong">
-          UserName‘s Choice
+          Favorite Beers
         </div>
         <div class="choice-list">
           <ul>
+            {{#each favoriteBeers}}
             <li class="beer-item-box clearfix">
-              <div class="beer-filed strong">Beer Name</div>
-              <div class="beer-filed">Brewing Company</div>
+              <div class="beer-filed strong">{{this.name}}</div>
+              <div class="beer-filed">{{this.type}}</div>
             </li>
-            <li class="beer-item-box clearfix">
-              <div class="beer-filed strong">Beer Name</div>
-              <div class="beer-filed">Brewing Company</div>
-            </li>
-            <li class="beer-item-box clearfix">
-              <div class="beer-filed strong">Beer Name</div>
-              <div class="beer-filed">Brewing Company</div>
-            </li>
-            <li class="beer-item-box clearfix">
-              <div class="beer-filed strong">Beer Name</div>
-              <div class="beer-filed">Brewing Company</div>
-            </li>
-            <li class="beer-item-box clearfix">
-              <div class="beer-filed strong">Beer Name</div>
-              <div class="beer-filed">Brewing Company</div>
-            </li>
-            <li class="beer-item-box clearfix">
-              <div class="beer-filed strong">Beer Name</div>
-              <div class="beer-filed">Brewing Company</div>
-            </li>
+            {{/each}}
           </ul>
-
         </div>
       </div>
     </div>
   </div>
-   
 </div>
