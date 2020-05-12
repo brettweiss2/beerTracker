@@ -5,8 +5,6 @@ const beerData = data.beers;
 const reviewData = data.reviews;
 const xss = require('xss');
 
-
-
 router.get('/beerSubmission',(req, res) =>{
 	if(!req.session.user){
 		res.render('signUpLogin/index')
@@ -39,7 +37,7 @@ router.post('/beersList/search',async (req, res) =>{
 			malt: beerProd.malt,
 			hops: beerProd.hops
 		}))
-	}catch{
+	}catch (e){
 		search_error.push("Can not find that one you search, try another")
 		HasSearch_error = true;
 		if(!req.session.user){
@@ -54,7 +52,6 @@ router.post('/beersList/search',async (req, res) =>{
 
 })
 
-
 router.get('/beersList',async(req, res) =>{
 	const beerList = await beerData.getAllBeers(1, 4);
 
@@ -64,8 +61,6 @@ router.get('/beersList',async(req, res) =>{
 })
 
 // get all beers
-
-
 
 //get specific one with that id
 router.get('/beersList/:id', async (req, res) =>{
@@ -91,7 +86,6 @@ router.get('/beersList/:id', async (req, res) =>{
     }
 })
 
-
 router.post('/beersList/:id', async (req, res) =>{
 	rate = parseInt(req.body.rating);
 	const newReview = await reviewData.addReview(
@@ -107,7 +101,6 @@ router.post('/beersList/:id', async (req, res) =>{
 	})
 });
 
-
 router.post('/beerSubmission', async (req, res) => {
 	let beerPost = req.body;
 	let errors = [];
@@ -115,7 +108,6 @@ router.post('/beerSubmission', async (req, res) => {
 	if (!beerPost.name) {
 		errors.push('No name provided');
 	}
-
 
 	if (!beerPost.type) {
 		errors.push('No type provided');
@@ -139,13 +131,6 @@ router.post('/beerSubmission', async (req, res) => {
 	if (typeof(beerPost.abv) !== "number") {
 		errors.push("abv must be a number")
 	}
-
-
-
-
-
-
-
 
 	if (errors.length > 0) {
 		res.render('beerSubmission/index', {
