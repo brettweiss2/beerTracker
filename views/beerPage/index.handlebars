@@ -33,18 +33,16 @@
 
 </script>
 
-
-
-    <header>
-        <div class="topnav">
-            <img id="logo" src="../../public/assets/beer logo.png">
-            <a id= "websiteName"href="/">Beer Tracker</a>
-                <div class="signUpLoginNav">
-                <a href="/beers/beersList">Beers</a>
-                <a href="/signUpLogin">Sign Up or Login</a>
-            </div>
+<header>
+    <div class="topnav">
+        <img id="logo" src="../../public/assets/beer logo.png">
+        <a id= "websiteName"href="/">Beer Tracker</a>
+            <div class="signUpLoginNav">
+            <a href="/beers/beersList">Beers</a>
+            <a href="/signUpLogin">Sign Up or Login</a>
         </div>
-    </header>
+    </div>
+</header>
 
 <div>
   
@@ -56,13 +54,13 @@
       <div class="beer-content-common userProfile-left">
         <div class="common-info beer-info">
           <ul>
-            <li class="strong">name: {{beer.name}}</li>
-            <li>type: {{beer.type}}</li>
-            <li>abv: {{beer.abv}}</li>
-            <li>malts: {{beer.malt}}</li>
-            <li>hops: {{beer.hops}}</li>
+            <li class="strong">{{beer.name}}</li>
+            <li>Type: {{beer.type}}</li>
+            <li>ABV: {{beer.abv}}</li>
+            <li>Malt: {{beer.malt}}</li>
+            <li>Hops: {{beer.hops}}</li>
             <li class="taste-profile">
-              <label>Taste Profile:&nbsp;</label>
+              <label>Notes:&nbsp;</label>
               <p>
                 {{beer.notes}}</li>
               </p>
@@ -74,18 +72,15 @@
             </div>
 
           </div>
-          <div class="reviews-title strong">Reviews</div>
+          <div class="reviews-title strong">Comments</div>
           <ul>
                 <div class="col-sm-12 col-md-6" id="reviews-area">
-
-                    {{#each reviews}} 
-                    <div>{{rating }}</div> 
-                    <div>{{comment}}</div>
-                    
-                    
-                    {{/each}}
-
-                    </div>
+                  {{#each beer.comments}} 
+                  <div>{{this.content}}</div> 
+                  <div>{{this.date}}</div>
+                  <div>by: <a href="/user/{{this.user._id}}">{{this.user.firstName}} {{this.user.lastName}}</a></div>
+                  {{/each}}
+                </div>
           </ul>
           <div class="page-turner">
             <span class="btn pre"> < </span>
@@ -97,7 +92,7 @@
       <div class="beerPage-right">
         <div class="developers-choice">
           <div class="top-title strong">
-            Developer‘s Choice
+            Developer's Choice
           </div>
           <div class="choice-list">
             <ul>

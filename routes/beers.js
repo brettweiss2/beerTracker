@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const data = require('../data');
 const beerData = data.beers;
+const userData = data.users;
 const reviewData = data.reviews;
 const xss = require('xss');
 
@@ -56,49 +57,66 @@ router.get('/beersList',async(req, res) =>{
 
 	if(!req.session.user){
 		res.render('beersList/index',{beers: beerList})
-	}else(res.render('beersList/indexLogged',{beers: beerList}))
+	}else res.render('beersList/indexLogged',{beers: beerList});
 })
-
-// get all beers
 
 //get specific one with that id
 router.get('/beersList/:id', async (req, res) =>{
     try{
-		const review = await reviewData.getAllReviews();
-		reviewWithBeer = []
-		for (i in(review)){
-			if(review[i].beer === req.params.id){
-				reviewWithBeer.push(review[i]);
-			}
+		let beer = await beerData.getBeer(req.params.id);
+		for (let i = 0; i < beer.comments.length; i++) {
+			const user = await userData.getUser(beer.comments[i].user);
+			beer.comments[i].user = user;
 		}
-		const beer = await beerData.getBeer(req.params.id);
-		if(!req.session.user){
-			res.render('beerPage/index',{
-				beer: beer,
-				reviews: reviewWithBeer})
-		}else(res.render('beerPage/indexLogged',{
-			beer: beer,
-			reviews: reviewWithBeer
-			}))
+
+		if(!req.session.user)
+			res.render('beerPage/index',{beer: beer});
+		else
+			res.render('beerPage/indexLogged',{beer: beer});
     } catch(e){
-        res.status(500).json({ error: e });
+       res.status(404).json({ error: e });
     }
-})
-
-router.post('/beersList/:id', async (req, res) =>{
-	rate = parseInt(req.body.rating);
-	const newReview = await reviewData.addReview(
-		xss(req.session.user.id),
-		xss(req.params.id),
-		xss(rate),
-		xss(req.body.comment)
-	);
-
-	res.render('partials/reviews',{
-		layout: null,
-		...newReview
-	})
 });
+
+router.post('/beersList/:id/review', async (req, res) =>{
+	try {
+		if(!req.session.user)
+			res.redirect('/beersList/' + req.params.id);
+		else {
+			const data = req.body;
+
+			if (!data['rating']) {
+				res.status(400).json({error: "no rating supplied"});
+				return;
+			}
+			if (!data['review']) {
+				res.status(400).json({error: "no review supplied"});
+				return;
+			}
+
+			await reviewData.addReview(req.session.user.id, req.params.id, Number(data['rating']), data['review']);
+
+			res.redirect('/dashBoard');
+		}
+	} catch (e) {
+		res.status(500).json({ error: e });
+	}
+});
+
+// router.post('/beersList/:id', async (req, res) =>{
+// 	rate = parseInt(req.body.rating);
+// 	const newReview = await reviewData.addReview(
+// 		xss(req.session.user.id),
+// 		xss(req.params.id),
+// 		xss(rate),
+// 		xss(req.body.comment)
+// 	);
+
+// 	res.render('partials/reviews',{
+// 		layout: null,
+// 		...newReview
+// 	})
+// });
 
 router.post('/beerSubmission', async (req, res) => {
 	let beerPost = req.body;

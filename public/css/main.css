@@ -874,4 +874,9 @@ body
     opacity: 0.6;
 
   }
+
+  textarea {
+    width: 275px;
+    height: 200px;
+  }
   
