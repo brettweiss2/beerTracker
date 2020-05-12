@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const data = require('../data');
 const userData = data.users;
 const saltRounds = 12;
+const xss = require('xss');
 
 router.get('/', async(req,res) => {
 	if(!req.session.user){
@@ -48,7 +49,13 @@ router.post('/login', async (req,res) => {
 });
 
 router.post('/signUp', async(req,res) =>{
-    const{email,password,firstName,lastName,city,state,country} = req.body;
+    const email = xss(req.body.email);
+    const password = xss(req.body.password);
+    const firstName = xss(req.body.firstName);
+    const lastName = xss(req.body.lastName);
+    const city = xss(req.body.city);
+    const state = xss(req.body.state);
+    const country = xss(req.body.country);
     email_L = email.toLowerCase()
     error = [];
 

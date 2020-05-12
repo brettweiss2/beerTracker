@@ -3,6 +3,7 @@ const router = express.Router();
 const data = require('../data');
 const beerData = data.beers;
 const reviewData = data.reviews;
+const xss = require('xss');
 
 router.get('/beerSubmission',(req, res) =>{
 	if(!req.session.user){
@@ -12,7 +13,7 @@ router.get('/beerSubmission',(req, res) =>{
 
 router.post('/beersList/search',async (req, res) =>{
 	search = req.body;
-	beerName = search.beer_search
+	beerName = xss(search.beer_search)
 	HasSearch_error = false;
 	search_error = [];
 	try{
@@ -88,10 +89,10 @@ router.get('/beersList/:id', async (req, res) =>{
 router.post('/beersList/:id', async (req, res) =>{
 	rate = parseInt(req.body.rating);
 	const newReview = await reviewData.addReview(
-		req.session.user.id,
-		req.params.id,
-		rate,
-		req.body.comment
+		xss(req.session.user.id),
+		xss(req.params.id),
+		xss(rate),
+		xss(req.body.comment)
 	);
 
 	res.render('partials/reviews',{
@@ -147,12 +148,12 @@ router.post('/beerSubmission', async (req, res) => {
 		beerPost.malt = beerPost.malt.split(",")
 		beerPost.abv = parseInt(beerPost.abv)
 		const newBeer = await beerData.addBeer(
-			beerPost.name,
-			beerPost.type,
-			beerPost.abv,
-            beerPost.malt,
-            beerPost.hops,
-			beerPost.notes,
+			xss(beerPost.name),
+			xss(beerPost.type),
+			xss(beerPost.abv),
+            xss(beerPost.malt),
+            xss(beerPost.hops),
+			xss(beerPost.notes),
 			
 		);
 
