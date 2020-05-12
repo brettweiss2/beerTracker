@@ -148,12 +148,12 @@ router.post('/beerSubmission', async (req, res) => {
 		beerPost.malt = beerPost.malt.split(",")
 		beerPost.abv = parseInt(beerPost.abv)
 		const newBeer = await beerData.addBeer(
-			xss(beerPost.name),
-			xss(beerPost.type),
-			xss(beerPost.abv),
-            xss(beerPost.malt),
-            xss(beerPost.hops),
-			xss(beerPost.notes),
+			beerPost.name,
+			beerPost.type,
+			beerPost.abv,
+            beerPost.malt,
+            beerPost.hops,
+			beerPost.notes
 			
 		);
 
