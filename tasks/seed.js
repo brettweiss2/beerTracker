@@ -25,7 +25,7 @@ const main = async () => {
     //beers
     let smonkey = await beers.addBeer(
         "Sour Monkey", 
-        "Sour Brett Tripel", 
+        "Tripel", 
         9.5, 
         ["Pilsner"], 
         ["Tettnang"], 
@@ -34,7 +34,7 @@ const main = async () => {
 
     let gmonkey = await beers.addBeer(
         "Golden Monkey", 
-        "Belgian-Style Tripel", 
+        "Tripel", 
         9.5, 
         ["Pilsner"], 
         ["Tettnang"], 
@@ -43,7 +43,7 @@ const main = async () => {
 
     let twmonkey = await beers.addBeer(
         "Twisted Monkey", 
-        "Belgian-Style Blonde Ale with Mango", 
+        "Blonde Ale", 
         5.8, 
         ["Pilsner"], 
         ["Tettnang"], 
@@ -61,7 +61,7 @@ const main = async () => {
 
     let easyringer = await beers.addBeer(
         "Easy Ringer", 
-        "Lo-Cal IPA", 
+        "IPA", 
         4.3, 
         ["2-Row Pale", "Carapils"], 
         ["Strata", "Citra", "Cascade"], 
@@ -70,7 +70,7 @@ const main = async () => {
 
     let classic = await beers.addBeer(
         "Classic", 
-        "Easy Drinkin' Lager", 
+        "Lager", 
         4.8, 
         ["Pilsner"], 
         ["Hallertau"], 
@@ -88,7 +88,7 @@ const main = async () => {
 
     let dirtwolf = await beers.addBeer(
         "Dirtwolf", 
-        "Double IPA", 
+        "IPA", 
         8.7, 
         ["Pilsner", "Pale Crystal"], 
         ["Citra", "Simcoe", "Mosaic", "Chinook"], 
@@ -97,7 +97,7 @@ const main = async () => {
 
     let cloudwalker = await beers.addBeer(
         "Cloud Walker", 
-        "Hazy Juicy IPA", 
+        "IPA", 
         6.8, 
         ["2-Row Pale", "Wheat", "Flaked Oats", "Lactose"], 
         ["Citra", "Mosaic"], 
@@ -106,7 +106,7 @@ const main = async () => {
 
     let primapills = await beers.addBeer(
         "Prima Pills", 
-        "German-style Pilsner", 
+        "Pilsner", 
         5.3, 
         ["Pilsner"], 
         ["Tettnang", "Hallertau", "Spalt", "Saaz"], 
@@ -124,7 +124,7 @@ const main = async () => {
 
     let hipczech = await beers.addBeer(
         "Hip Czech", 
-        "Czech-style Lager", 
+        "Lager", 
         4.8, 
         ["Pilsner"], 
         ["Saaz Saazer"], 
@@ -133,7 +133,7 @@ const main = async () => {
 
     let tripelhorse = await beers.addBeer(
         "Tripel Horse", 
-        "Belgian Style Tripel", 
+        "Tripel", 
         10.0, 
         ["Pilsen", "White Wheat", "Caramel"], 
         ["Chinook", "Hallertau", "Saaz"], 
@@ -142,7 +142,7 @@ const main = async () => {
 
     let hippotizing = await beers.addBeer(
         "Hippotizing IPA", 
-        "American IPA", 
+        "IPA", 
         7.5, 
         ["Pilsen", "Vienna", "Carapils"], 
         ["Summit", "Chinook", "Mosaic", "Falconer's Flight"], 
@@ -151,7 +151,7 @@ const main = async () => {
 
     let riverhorseIPA = await beers.addBeer(
         "IPA", 
-        "India Pale Ale", 
+        "IPA", 
         5.7, 
         ["Pilsen", "Carapils", "Melanoidin", "Honey"], 
         ["Summit", "Chinook", "Simcoe", "Citra", "Falconer's Flight", "Wakatu", "Cascade", "Centennial"], 
@@ -160,7 +160,7 @@ const main = async () => {
 
     let clearskies = await beers.addBeer(
         "Clear Skies IPA", 
-        "India Pale Ale", 
+        "IPA", 
         5.8, 
         ["Pilsen", "Carapilsen"], 
         ["Falconer's Flight", "Simcoe", "Centennial"], 
@@ -169,7 +169,7 @@ const main = async () => {
 
     let fattire = await beers.addBeer(
         "Fat Tire", 
-        "Amber Ale", 
+        "Ale", 
         5.2, 
         ["Pale", "C-80", "Munich", "Victory"], 
         ["Willamette", "Goldings", "Nugget"],
@@ -178,7 +178,7 @@ const main = async () => {
 
     let voodoo = await beers.addBeer(
         "Voodoo Ranger", 
-        "India Pale Ale", 
+        "IPA", 
         7.0, 
         ["Pale", "Black"], 
         ["Nugget", "Cascade", "Simcoe", "Chinook", "Mosaic", "Amarillo"],
@@ -196,7 +196,7 @@ const main = async () => {
 
     let trippel = await beers.addBeer(
         "Mountain Time", 
-        "Belgian Style Ale", 
+        "Ale", 
         8.5, 
         ["Pale", "Munich", "Pilsner"], 
         ["Target", "Hallertau Mittelfruh", "Saaz", "Liberty"],

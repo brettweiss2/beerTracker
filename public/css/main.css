@@ -875,8 +875,17 @@ body
 
   }
 
-  textarea {
-    width: 275px;
+  #review {
+    width: 100%;
     height: 200px;
+  }
+
+  #comment {
+    width: 100%;
+    height: 40px;
+  }
+
+  .timestamp {
+    font-size: 8pt;
   }
   

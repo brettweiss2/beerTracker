@@ -72,13 +72,14 @@
             </div>
 
           </div>
-          <div class="reviews-title strong">Comments</div>
+          <div class="top-title strong">Comments</div>
           <ul>
                 <div class="col-sm-12 col-md-6" id="reviews-area">
-                  {{#each beer.comments}} 
+                  {{#each beer.comments}}
+                  <div><a href="/user/{{this.user._id}}">{{this.user.firstName}} {{this.user.lastName}}</a></div>
                   <div>{{this.content}}</div> 
-                  <div>{{this.date}}</div>
-                  <div>by: <a href="/user/{{this.user._id}}">{{this.user.firstName}} {{this.user.lastName}}</a></div>
+                  <div class="timestamp">{{this.date}}</div>
+                  <br>
                   {{/each}}
                 </div>
           </ul>
@@ -90,27 +91,6 @@
         </div>
       </div>
       <div class="beerPage-right">
-        <div class="developers-choice">
-          <div class="top-title strong">
-            Developer's Choice
-          </div>
-          <div class="choice-list">
-            <ul>
-              <li class="beer-item-box clearfix">
-                <div class="beer-filed strong">Beer Name</div>
-                <div class="beer-filed">Brewing Company</div>
-              </li>
-              <li class="beer-item-box clearfix">
-                <div class="beer-filed strong">Beer Name</div>
-                <div class="beer-filed">Brewing Company</div>
-              </li>
-              <li class="beer-item-box clearfix">
-                <div class="beer-filed strong">Beer Name</div>
-                <div class="beer-filed">Brewing Company</div>
-              </li>
-            </ul>
-          </div>
-        </div>
         <div class="similar-beer">
           <div class="top-title strong">
             Similar Beers
