@@ -49,7 +49,6 @@ router.post('/beersList/search',async (req, res) =>{
 				HasSearch_error : true,
 				search_error : search_error}))
 	}
-
 })
 
 router.get('/beersList',async(req, res) =>{
