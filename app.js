@@ -19,7 +19,15 @@ app.use(
     })
 )
 
-
+app.use(async (req, res, next)=>{
+	let msg = undefined
+	if (req.session.user)
+		msg = "(Authenticated User)";
+	else
+		msg = "(Non-Authenticated User)";
+	console.log(`[${new Date().toUTCString()}]: ${req.method} ${req.originalUrl} ${msg}`);
+	next();
+})
 
 app.engine('handlebars', exphbs({ 
     defaultLayout: 'main' ,
