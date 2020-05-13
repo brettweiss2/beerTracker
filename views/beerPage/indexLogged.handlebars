@@ -47,7 +47,6 @@
     </header>
 
 <div>
-  
     <div id="bg">
      </div>
     <div class="mask"></div>
@@ -55,32 +54,37 @@
       <div class="beer-content-common userProfile-left">
         <div class="common-info beer-info">
           <ul>
-            <li class="strong">{{beer.name}}</li>
-            <li>Type: {{beer.type}}</li>
-            <li>ABV: {{beer.abv}}</li>
-            <li>Malt: {{beer.malt}}</li>
-            <li>Hops: {{beer.hops}}</li>
-            <li class="taste-profile">
-              <label>Notes:&nbsp;</label>
-                {{beer.notes}}</li>
+            <li class="strong"><h1 class="beer-title">{{beer.name}}</h1></li>
+            <li></li>
+            <li><h1 class="beer-attr">Type: {{beer.type}}</h1></li>
+            <li><h1 class="beer-attr">ABV: {{beer.abv}}</h1></li>
+            <li><h1 class="beer-attr">Malt: {{beer.malt}}</h1></li>
+            <li><h1 class="beer-attr">Hops: {{beer.hops}}</h1></li>
+            <li><h2 class="beer-notes">Notes: {{beer.notes}}</li></h2>
           </ul>
+          {{#if isFavorite}}
+          <form method="POST" action="/beers/beersList/{{beer._id}}/unfavorite">
+            <button type="submit" class="unfollow">Unfavorite</button>
+          </form>
+          {{else}}
+          <form method="POST" action="/beers/beersList/{{beer._id}}/favorite">
+            <button type="submit" class="unfollow">Favorite</button>
+          </form>
+          {{/if}}
         </div>
         <div class="recent-activity-list">
           <div class="top-title strong">Comments</div>
           <ul>
-              <li>
-                <div class="col-sm-12 col-md-6" id="reviews-area">
-                  {{#each beer.comments}} 
-                  <div><a href="/user/{{this.user._id}}">{{this.user.firstName}} {{this.user.lastName}}</a></div>
-                  <div>{{this.content}}</div> 
-                  <div class="timestamp">{{this.date}}</div>
-                  <br>
-                  {{/each}}
-                </div>
-              </li>
+            <div class="col-sm-12 col-md-6" id="reviews-area">
+              {{#each beer.comments}} 
+              <div class="comment-user"><a href="/user/{{this.user._id}}">{{this.user.firstName}} {{this.user.lastName}}</a></div>
+              <div class="comment-content">{{this.content}}</div> 
+              <div class="timestamp">{{this.date}}</div>
+              <br>
+              {{/each}}
+            </div>
           </ul>
- 
-          <form id="comment-form" action="/beers/beersList/{{beer._id}}/comment" method="POST">
+          <form id="review-form" action="/beers/beersList/{{beer._id}}/comment" method="POST">
             <label for="comment">Add a Comment:</label><br>
             <textarea id="comment" name="comment"></textarea><br>
             <input type="submit" value="Submit">

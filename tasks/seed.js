@@ -110,7 +110,7 @@ const main = async () => {
         5.3, 
         ["Pilsner"], 
         ["Tettnang", "Hallertau", "Spalt", "Saaz"], 
-        "A crisp yet distinct Pilsner brewed with German hops that bring vivid notes of floral and spice with citrus and lemon. This is truly brilliant, bringing nuanced complexity together with smooth, easy drinking."
+        "A crisp Pilsner brewed with German hops with vivid notes of floral and spice with citrus and lemon. Brings nuanced complexity together with smooth, easy drinking."
     );
 
     let hopdevil = await beers.addBeer(

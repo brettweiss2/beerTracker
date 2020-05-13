@@ -27,7 +27,7 @@
           <div class="search_box">
 
             <form action="/beers/beersList/search" method="POST">
-                <input type="text" name= 'beer_search' placeholder="Search for a Beer...">
+                <label id='beer_search'><input id='beer_search' type="text" name= 'beer_search' placeholder="Search for a Beer..."></label>
                 <button type="submit" class="fas fa-search">Search</button>
             </form>
 
@@ -90,7 +90,6 @@
             </li>
             {{/each}}
           </ul>
- 
         </div>
       </div>
       <div class="beer-content-common beersList-right">

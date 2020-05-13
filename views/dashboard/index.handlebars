@@ -22,8 +22,8 @@
       <div class="beer-content-common userProfile-left">
         <div class="common-info user-info">
           <ul>
-            <li class="strong">{{firstName}} {{lastName}}</li>
-            <li>{{city}}, {{state}}, {{country}}</li>
+            <li class="strong"><h1 class="user-name">{{firstName}} {{lastName}}</h1></li>
+            <li><h1 class="user-location">{{city}}, {{state}}, {{country}}</h1></li>
           </ul>
         </div>
         <div class="recent-content">
@@ -54,8 +54,8 @@
             <div class="recent-reviews-list">
               <ul>
                 {{#each following}}
-                <li class="recent-review-item">
-                  <a href="/user/{{this._id}}">{{this.firstName}} {{this.lastName}}</a>
+                <li>
+                  <h2 class="following"><a href="/user/{{this._id}}">{{this.firstName}} {{this.lastName}}</a></h2>
                 </li>
                 {{/each}}
               </ul>

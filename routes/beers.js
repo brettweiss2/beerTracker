@@ -56,7 +56,7 @@ async function getRecommendedBeers(userId) {
 	}
 
 	scores.sort((a,b)=>(a.score < b.score) ? 1 : -1);
-	const recommended = scores.slice(0,7);
+	const recommended = scores.slice(0,8);
 	
 	const set = new Set(recommended);
 
@@ -93,7 +93,7 @@ async function getSimilarBeers(beerId) {
 	}
 
 	scores.sort((a,b)=>(a.score < b.score) ? 1 : -1);
-	const similar = scores.slice(0,4);
+	const similar = scores.slice(0,6);
 	
 	const set = new Set(similar);
 
@@ -177,8 +177,14 @@ router.get('/beersList/:id', async (req, res) =>{
 
 		if(!req.session.user)
 			res.render('beerPage/index',{beer: beer, similar: similar});
-		else
-			res.render('beerPage/indexLogged',{beer: beer, similar: similar});
+		else {
+			const currUser = await userData.getUser(req.session.user.id);
+			let isFavorite = false;
+			for (let i = 0; i < currUser.favoriteBeers.length; i++) {
+				if (currUser.favoriteBeers[i] === req.params.id) isFavorite = true;
+			}
+			res.render('beerPage/indexLogged',{beer: beer, similar: similar, isFavorite: isFavorite});
+		}
     } catch(e){
        res.status(404).json({ error: e });
     }
@@ -230,66 +236,41 @@ router.post('/beersList/:id/comment', async (req, res) =>{
 	}
 });
 
-router.post('/beerSubmission', async (req, res) => {
-	let beerPost = req.body;
-	let errors = [];
-	beerPost.abv = parseInt(beerPost.abv)
-	if (!beerPost.name) {
-		errors.push('No name provided');
-	}
-
-	if (!beerPost.type) {
-		errors.push('No type provided');
-	}
-	if (!beerPost.abv) {
-		errors.push('No abv provided');
-	}
-	if (!beerPost.malt) {
-		errors.push('No malt provided');
-	}
-	if (!beerPost.hops) {
-		errors.push('No hops provided');
-	}
-	if (!beerPost.notes) {
-		errors.push('No notes provided');
-	}
-	if (beerPost.abv < 0 || beerPost.abv > 100) {
-		errors.push("abv must be between 0 and 100")
-	}
-
-	if (typeof(beerPost.abv) !== "number") {
-		errors.push("abv must be a number")
-	}
-
-	if (errors.length > 0) {
-		res.render('beerSubmission/index', {
-			errors: errors,
-			hasErrors: true,
-
-		});
-		return;
-	}
-
+router.post('/beersList/:id/favorite', async (req, res) =>{
 	try {
+        if(!req.session.user)
+            res.redirect('/beers/beersList/' + req.params.id);
+        else {
+            const user = await userData.getUser(req.session.user.id);
+            let favorites = user.favoriteBeers;
+            if (!favorites.includes(req.params.id)) {
+                favorites.push(req.params.id);
+                await userData.updateUser(req.session.user.id, {favoriteBeers: favorites});
+            }   
+        }
+        res.redirect('/beers/beersList/' + req.params.id);
+    } catch(e) {
+        res.status(500).json({message: e});
+    }
+});
 
-		beerPost.hops = beerPost.hops.split(",")
-		
-		beerPost.malt = beerPost.malt.split(",")
-		beerPost.abv = parseInt(beerPost.abv)
-		const newBeer = await beerData.addBeer(
-			beerPost.name,
-			beerPost.type,
-			beerPost.abv,
-            beerPost.malt,
-            beerPost.hops,
-			beerPost.notes
-			
-		);
-
-		res.redirect(`/beers/beersList`);
-	} catch (e) {
-		res.status(500).json({ error: e });
-	}
+router.post('/beersList/:id/unfavorite', async (req, res) =>{
+	try {
+        if(!req.session.user)
+            res.redirect('/beers/beersList/' + req.params.id);
+        else {
+            const user = await userData.getUser(req.session.user.id);
+            let favorites = user.favoriteBeers;
+            if (favorites.includes(req.params.id)) {
+                const index = favorites.indexOf(req.params.id);
+                if (index !== -1) favorites.splice(index, 1);
+                await userData.updateUser(req.session.user.id, {favoriteBeers: favorites});
+            }   
+        }
+        res.redirect('/beers/beersList/' + req.params.id);
+    } catch(e) {
+        res.status(500).json({message: e});
+    }
 });
 
 module.exports=router;
