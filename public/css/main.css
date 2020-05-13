@@ -111,6 +111,11 @@ body, html
   .fa-search:before {
     margin-right: 5px;
 }
+
+.fa, .fas {
+  font-weight: 600;
+  font-size: inherit;
+}
   
   .search_box ::-webkit-input-placeholder {
     /* Chrome/Opera/Safari */
@@ -416,8 +421,12 @@ body, html
   .beersList .beers-list-content {
     border: 1px solid #333;
     border-radius: 10px;
-      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
         0 10px 10px rgba(0,0,0,0.22);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: 65vh;
+    margin: 0.1vw;
   }
   .beersList .beers-list-content .result-desc {
     line-height: 40px;
@@ -426,7 +435,7 @@ body, html
   }
   
   .beersList .beer-item-box:first-child {
-    padding-top: 0;
+    padding-top: 5;
   }
   .beersList .beers-list-content .beer-item-box .beer-left{
     float: left;
@@ -735,6 +744,7 @@ body, html
         0 10px 10px rgba(0,0,0,0.22);
     padding: 30px;
     box-sizing: border-box;
+    font-size: 11px;
   }
 
   .beer-item-box {
@@ -908,3 +918,24 @@ body, html
     font-size: 8pt;
   }
   
+  ::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: lightgrey;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(128,128,128,0.4); 
+}
