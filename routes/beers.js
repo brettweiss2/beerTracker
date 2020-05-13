@@ -194,22 +194,25 @@ router.get('/beersList/:id', async (req, res) =>{
 });
 
 router.post('/beersList/:id/review', async (req, res) =>{
+
+
 	try {
 		if(!req.session.user)
 			res.status(401).redirect('/beers/beersList/' + req.params.id);
 		else {
-			const data = req.body;
+			const rating = xss(req.body.rating);
+			const review = xss(req.body.review);
 
-			if (!data['rating']) {
+			if (!rating) {
 				res.status(400).json({error: "no rating supplied"});
 				return;
 			}
-			if (!data['review']) {
+			if (!review) {
 				res.status(400).json({error: "no review supplied"});
 				return;
 			}
 
-			await reviewData.addReview(req.session.user.id, req.params.id, Number(data['rating']), data['review']);
+			await reviewData.addReview(req.session.user.id, req.params.id, Number(rating), review);
 
 			res.redirect('/dashBoard');
 		}
@@ -223,14 +226,14 @@ router.post('/beersList/:id/comment', async (req, res) =>{
 		if(!req.session.user)
 			res.status(401).redirect('/beers/beersList/' + req.params.id);
 		else {
-			const data = req.body;
+			const comment = req.body.comment;
 
-			if (!data['comment']) {
+			if (!comment) {
 				res.status(400).json({error: "no comment supplied"});
 				return;
 			}
 
-			await beerData.addComment(req.params.id, req.session.user.id, data['comment']);
+			await beerData.addComment(req.params.id, req.session.user.id, comment);
 
 			res.redirect('/beers/beersList/' + req.params.id);
 		}
