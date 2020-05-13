@@ -1,7 +1,15 @@
 # beerTracker
-a beer tracking webapp for CS 546 at Stevens Institute of Technology 
+a beer tracking webapp for CS 546 Group 9 at Stevens Institute of Technology 
 
-Here are our mock ups for the beer tracking web app made in Balsamiq Mockups 3
+# Running beerTracker
+1) Clone the repository
+2) Run 'npm install' to install dependencies
+3) Make sure you are running a MongoDB server on the host machine
+4) Run 'npm run seed' to seed the database
+5) Run 'npm start' to start the server and application
+6) Open a browser and navigate to http://localhost:3000/
+
+Here are our original mock ups for the beer tracking web app made in Balsamiq Mockups 3
 
 Home Page
 ![Home Page](https://github.com/brettweiss2/beerTracker/blob/master/Mockups/Home%20Page.png)
