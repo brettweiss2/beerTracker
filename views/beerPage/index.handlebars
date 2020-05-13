@@ -70,6 +70,7 @@
           </div>
           <div class="top-title strong">Comments</div>
           <ul>
+            <li>
                 <div class="col-sm-12 col-md-6" id="reviews-area">
                   {{#each beer.comments}}
                   <div class="comment-user"><a href="/user/{{this.user._id}}">{{this.user.firstName}} {{this.user.lastName}}</a></div>
@@ -78,6 +79,7 @@
                   <br>
                   {{/each}}
                 </div>
+              </li>
           </ul>
         </div>
       </div>

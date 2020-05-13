@@ -75,16 +75,18 @@
         <div class="recent-activity-list">
           <div class="top-title strong">Comments</div>
           <ul>
-            <div class="col-sm-12 col-md-6" id="reviews-area">
-              {{#each beer.comments}} 
-              <div class="comment-user"><a href="/user/{{this.user._id}}">{{this.user.firstName}} {{this.user.lastName}}</a></div>
-              <div class="comment-content">{{this.content}}</div> 
-              <div class="timestamp">{{this.date}}</div>
-              <br>
-              {{/each}}
-            </div>
+            <li>
+              <div class="col-sm-12 col-md-6" id="reviews-area">
+                {{#each beer.comments}} 
+                <div class="comment-user"><a href="/user/{{this.user._id}}">{{this.user.firstName}} {{this.user.lastName}}</a></div>
+                <div class="comment-content">{{this.content}}</div> 
+                <div class="timestamp">{{this.date}}</div>
+                <br>
+                {{/each}}
+              </div>
+            </li>
           </ul>
-          <form id="review-form" action="/beers/beersList/{{beer._id}}/comment" method="POST">
+          <form id="comment-form" action="/beers/beersList/{{beer._id}}/comment" method="POST">
             <label for="comment">Add a Comment:</label><br>
             <textarea id="comment" name="comment"></textarea><br>
             <input type="submit" value="Submit">
