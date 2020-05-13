@@ -11,6 +11,9 @@
         <a id= "websiteName"href="/">Beer Tracker</a>
             <div class="signUpLoginNav">
             <a href ="/beers/beerSubmission">Post a beer</a>
+            {{#if isOtherUser}}
+            <a href="/dashBoard">DashBoard</a>
+            {{/if}}
             <a href="/beers/beersList">Beers</a>
             <a href="/signUpLogin/logout">Logout</a>
         </div>
@@ -28,6 +31,17 @@
             <li class="strong">{{firstName}} {{lastName}}</li>
             <li>{{city}}, {{state}}, {{country}}</li>
           </ul>
+          {{#if isOtherUser}}
+          {{#if isFollowing}}
+          <form method="POST", action="/user/{{id}}/unfollow">
+          <button type="submit" class="unfollow">Unfollow</button>
+          </form>
+          {{else}}
+          <form method="POST", action="/user/{{id}}/follow">
+          <button type="submit" class="follow">Follow</button>
+          </form>
+          {{/if}}
+          {{/if}}
         </div>
         <div class="recent-content">
           <div class="recent-reviews box-border">
