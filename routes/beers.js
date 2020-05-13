@@ -226,7 +226,7 @@ router.post('/beersList/:id/comment', async (req, res) =>{
 		if(!req.session.user)
 			res.status(401).redirect('/beers/beersList/' + req.params.id);
 		else {
-			const comment = req.body.comment;
+			const comment = xss(req.body.comment);
 
 			if (!comment) {
 				res.status(400).json({error: "no comment supplied"});
