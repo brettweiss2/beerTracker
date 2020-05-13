@@ -468,7 +468,6 @@ body, html
         0 0 0 rgba(0,0,0,0.22);
   }
   
-
   .userProfile .userProfile-left .recent-activity-list {
     height: auto;
     border: 1px solid #333;
@@ -938,4 +937,49 @@ body, html
 }
 ::-webkit-scrollbar-thumb:window-inactive {
 	background: rgba(128,128,128,0.4); 
+}
+
+.comment-user {
+  font-size: 14.5pt;
+}
+
+.comment-content {
+  font-size: 12pt;
+}
+
+.user-name {
+  font-size: 16pt;
+}
+
+.user-location {
+  font-size: 16pt;
+  font-weight: 400;
+  text-align: right;
+}
+
+.following {
+  font-size: 18pt;
+  padding: 12pt;
+}
+
+.beer-grade {
+  align-content: right;
+}
+
+.beer-title {
+  font-size: 20pt;
+}
+
+.beer-attr {
+  font-size: 14pt;
+  font-weight: 580;
+}
+
+.beer-notes {
+  font-size: 10pt;
+  font-weight: 580;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-style: italic;
+  line-height: 1.6;
 }

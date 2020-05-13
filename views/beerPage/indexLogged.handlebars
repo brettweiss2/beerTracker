@@ -47,7 +47,6 @@
     </header>
 
 <div>
-  
     <div id="bg">
      </div>
     <div class="mask"></div>
@@ -55,59 +54,36 @@
       <div class="beer-content-common userProfile-left">
         <div class="common-info beer-info">
           <ul>
-            <li class="strong">{{beer.name}}</li>
-            <li>Type: {{beer.type}}</li>
-            <li>ABV: {{beer.abv}}</li>
-            <li>Malt: {{beer.malt}}</li>
-            <li>Hops: {{beer.hops}}</li>
-            <li class="taste-profile">
-              <label>Notes:&nbsp;</label>
-              <p>
-                {{beer.notes}}</li>
-              </p>
+            <li class="strong"><h1 class="beer-title">{{beer.name}}</h1></li>
+            <li></li>
+            <li><h1 class="beer-attr">Type: {{beer.type}}</h1></li>
+            <li><h1 class="beer-attr">ABV: {{beer.abv}}</h1></li>
+            <li><h1 class="beer-attr">Malt: {{beer.malt}}</h1></li>
+            <li><h1 class="beer-attr">Hops: {{beer.hops}}</h1></li>
+            <li><h2 class="beer-notes">Notes: {{beer.notes}}</li></h2>
           </ul>
+          {{#if isFavorite}}
+          <form method="POST" action="/beers/beersList/{{beer._id}}/unfavorite">
+            <button type="submit" class="unfollow">Unfavorite</button>
+          </form>
+          {{else}}
+          <form method="POST" action="/beers/beersList/{{beer._id}}/favorite">
+            <button type="submit" class="unfollow">Favorite</button>
+          </form>
+          {{/if}}
         </div>
         <div class="recent-activity-list">
-          <!--<div class="activity-list-title strong">Leave a Comment</div>
-          <div class="leave-review-box">
-            <div class="text-content">
-              <textarea name="" id="" rows="5"></textarea>
-            </div>
-            <div class="handle-box">
-              <div class="rate-box">
-                <div class="rate-num"><span id="rate-num">3</span>/5</div>
-                <div class="diamond">
-                  <span class="arrow-up tete" id="arrowUp"></span>
-                  <span class="arrow-bottom" id="arrowDown"></span>
-                </div>
-              </div>
-              <button class="submit-btn">Submit</button>
-            </div>
-          </div>-->
           <div class="top-title strong">Comments</div>
           <ul>
-                <div class="col-sm-12 col-md-6" id="reviews-area">
-                  {{#each beer.comments}} 
-                  <div><a href="/user/{{this.user._id}}">{{this.user.firstName}} {{this.user.lastName}}</a></div>
-                  <div>{{this.content}}</div> 
-                  <div class="timestamp">{{this.date}}</div>
-                  <br>
-                  {{/each}}
-                </div>
-            {{!-- <li class="common-activity-item">
-              <div class="desc">This is the best beer out there. The sour taste is for sure an aquired taste, but I find it delicious and strong enough to just sip.</div>
-              <div class="user-name">By: User Name</div>
-            </li>
-            <li class="common-activity-item">
-              <div class="desc">This is the best beer out there. The sour taste is for sure an aquired taste, but I find it delicious and strong enough to just sip.</div>
-              <div class="user-name">By: User Name</div>
-            </li> --}}
+            <div class="col-sm-12 col-md-6" id="reviews-area">
+              {{#each beer.comments}} 
+              <div class="comment-user"><a href="/user/{{this.user._id}}">{{this.user.firstName}} {{this.user.lastName}}</a></div>
+              <div class="comment-content">{{this.content}}</div> 
+              <div class="timestamp">{{this.date}}</div>
+              <br>
+              {{/each}}
+            </div>
           </ul>
-          <div class="page-turner">
-            <span class="btn pre"> < </span>
-            <span>1</span>
-            <span class="btn next"> > </span>
-          </div>
           <form id="review-form" action="/beers/beersList/{{beer._id}}/comment" method="POST">
             <label for="comment">Add a Comment:</label><br>
             <textarea id="comment" name="comment"></textarea><br>
@@ -121,7 +97,7 @@
             Review this Beer
           </div>
           <form id="review-form" action="/beers/beersList/{{beer._id}}/review" method="POST">
-            <label for="rating">Rating:</label><br>
+            <label for="rating">Rating:</label>
             <input type="number" id="rating" name="rating" step="0.1" min="0", max="5"><br>
             <label for="review">Review:</label><br>
             <textarea id="review" name="review"></textarea><br>
