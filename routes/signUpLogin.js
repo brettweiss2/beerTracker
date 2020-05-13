@@ -13,7 +13,11 @@ router.get('/', async(req,res) => {
 });
 
 router.post('/login', async (req,res) => {
-    const {email, password} = req.body;
+    // const {emailXss, passwordXss} = req.body;
+    email = xss(req.body.email);
+    password = xss(req.body.password);
+
+
     errors=[];
     try{
         let user = await userData.getUserByEmail(email);
