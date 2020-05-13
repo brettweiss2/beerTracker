@@ -63,12 +63,6 @@ async function getRecommendedBeers(userId) {
 	return [...set];
 }
 
-router.get('/beerSubmission',(req, res) =>{
-	if(!req.session.user){
-		res.render('signUpLogin/index')
-	}else(res.render('beerSubmission/indexLogged'))
-});
-
 router.post('/beersList/search',async (req, res) =>{
 	search = req.body;
 	beerName = xss(search.beer_search)
@@ -196,21 +190,6 @@ router.post('/beersList/:id/comment', async (req, res) =>{
 		res.status(500).json({ error: e });
 	}
 });
-
-// router.post('/beersList/:id', async (req, res) =>{
-// 	rate = parseInt(req.body.rating);
-// 	const newReview = await reviewData.addReview(
-// 		xss(req.session.user.id),
-// 		xss(req.params.id),
-// 		xss(rate),
-// 		xss(req.body.comment)
-// 	);
-
-// 	res.render('partials/reviews',{
-// 		layout: null,
-// 		...newReview
-// 	})
-// });
 
 router.post('/beerSubmission', async (req, res) => {
 	let beerPost = req.body;
