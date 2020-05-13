@@ -36,11 +36,11 @@ router.post('/login', async (req,res) => {
                 }
                 return res.redirect('http://localhost:3000/dashBoard')
             }else{
-                errors.push('The email or password you enter is wrong, try again')
+                errors.push('The email or password you entered is wrong, please try again')
             }
         }
     }catch(e){ 
-        errors.push('The email or password you enter is wrong, try again')
+        errors.push('The email or password you entered is wrong, please try again')
     }
 
     if (errors.length > 0) {
