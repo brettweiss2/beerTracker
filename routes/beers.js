@@ -150,7 +150,7 @@ router.post('/beersList/search',async (req, res) =>{
 });
 
 router.get('/beersList',async(req, res) =>{
-	const beerList = await beerData.getAllBeersPage(1, 4);
+	const beerList = await beerData.getAllBeers();
 
 	if(!req.session.user){
 		res.render('beersList/index',{beers: beerList})
@@ -282,7 +282,7 @@ router.post('/beerSubmission', async (req, res) => {
 			beerPost.abv,
             beerPost.malt,
             beerPost.hops,
-			beerPost.notes,
+			beerPost.notes
 			
 		);
 
