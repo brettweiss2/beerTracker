@@ -986,3 +986,12 @@ body, html
   font-style: italic;
   line-height: 1.6;
 }
+
+.signUp-error {
+  color: magenta;
+  font-size: 14pt;
+  font-weight: 800;
+  text-align: center;
+  padding-top: 20px;
+  padding-right: 10%;
+}

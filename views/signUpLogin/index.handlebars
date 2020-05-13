@@ -59,15 +59,6 @@
 			</label>
 
 			<button type='submit'>Sign Up</button>
-                 {{#if hasError}}
-                  <ul>
-                    {{#each error}}
-                    <li>
-                      {{this}}
-                    </li>
-                    {{/each}}
-                  </ul>
-                  {{/if}} 
 		</form>
 
 	</div>
@@ -113,4 +104,15 @@
 	</div>
 </div>
     </div>
+	<div class="signUp-error">
+		{{#if hasError}}
+        <ul>
+        {{#each error}}
+			<li>
+			{{this}}
+			</li>
+        {{/each}}
+        </ul>
+        {{/if}}
+	</div>
 </div>

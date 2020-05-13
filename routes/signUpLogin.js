@@ -64,22 +64,22 @@ router.post('/signUp', async(req,res) =>{
     error = [];
 
     if(!email_L){
-        error.push("Please provied email")
+        error.push("Please provied an email")
     }
     if(!password){
-        error.push("Please provide password")
+        error.push("Please provide a password")
     }
     if(!firstName){
-        error.push("Please provide First Name")
+        error.push("Please provide your first name")
     }
     if(!lastName){
-        error.push("Please provide Last Name")
+        error.push("Please provide your last name")
     }
     if(!city){
-        error.push("Please provide city")
+        error.push("Please provide your city")
     }
     if(!state){
-        error.push("Please provide State")
+        error.push("Please provide your state")
     }
     if(!country){
         error.push("Please provide country")
@@ -88,7 +88,7 @@ router.post('/signUp', async(req,res) =>{
     try{
         let user = await userData.getUserByEmail(email_L);
         if(user){
-            error.push("This email has been registered")
+            error.push("This email has already been registered")
 
         }}catch(e){
             const hassPassword = await bcrypt.hash(password,saltRounds)
@@ -105,7 +105,7 @@ router.post('/signUp', async(req,res) =>{
                 }
                 res.redirect('http://localhost:3000/dashBoard')}
             catch(e){
-                error.push("Register Failed")
+                error.push("Registration failed")
             }
         }
 
