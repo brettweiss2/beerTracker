@@ -103,7 +103,14 @@ body
     right: 25px;
     color: #fff;
     font-size: 25px;
+    padding: 0;
+    border: none;
+    background: none;
   }
+
+  .fa-search:before {
+    margin-right: 5px;
+}
   
   .search_box ::-webkit-input-placeholder {
     /* Chrome/Opera/Safari */
@@ -397,12 +404,14 @@ body
   }
   .beersList .beersList-left {
     float: left;
-    width: 68%;
+    width: 62%;
+    margin-left: 2vw;
     
   }
   .beersList .beersList-right {
     float: right;
     width: 28%;
+    margin-right: 2vw;
   }
   .beersList .beers-list-content {
     border: 1px solid #333;
