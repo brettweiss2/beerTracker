@@ -69,8 +69,6 @@ module.exports = {
         return result;
     },
 
-
-    //temporary
     async getUserByEmail(emailAddress) {
         if (!emailAddress) throw new Error("Must provide the user's ID");
         if (typeof emailAddress !== "string") throw new Error("ID must be a string");
