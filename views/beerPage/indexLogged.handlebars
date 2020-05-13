@@ -1,5 +1,4 @@
-<!--<script>
-
+<script>
   window.onload=function(){
     
     const arrowUpBtn = document.getElementById('arrowUp');
@@ -28,7 +27,8 @@
       }
 		});
   }
-</script>-->
+</script>
+
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
@@ -36,8 +36,8 @@
 
     <header>
         <div class="topnav">
-            <img id="logo" src="../../public/assets/beer logo.png">
-            <a id= "websiteName"href="/">Beer Tracker</a>
+        <img id="logo" alt="logo" src="../../public/assets/beerLogo.png">
+            <a id= "websiteName" href="/">Beer Tracker</a>
                 <div class="signUpLoginNav">
                 <a href="/beers/beersList">Beers</a>   
                 <a href="/dashBoard">DashBoard</a>
@@ -62,30 +62,13 @@
             <li>Hops: {{beer.hops}}</li>
             <li class="taste-profile">
               <label>Notes:&nbsp;</label>
-              <p>
                 {{beer.notes}}</li>
-              </p>
           </ul>
         </div>
         <div class="recent-activity-list">
-          <!--<div class="activity-list-title strong">Leave a Comment</div>
-          <div class="leave-review-box">
-            <div class="text-content">
-              <textarea name="" id="" rows="5"></textarea>
-            </div>
-            <div class="handle-box">
-              <div class="rate-box">
-                <div class="rate-num"><span id="rate-num">3</span>/5</div>
-                <div class="diamond">
-                  <span class="arrow-up tete" id="arrowUp"></span>
-                  <span class="arrow-bottom" id="arrowDown"></span>
-                </div>
-              </div>
-              <button class="submit-btn">Submit</button>
-            </div>
-          </div>-->
           <div class="top-title strong">Comments</div>
           <ul>
+              <li>
                 <div class="col-sm-12 col-md-6" id="reviews-area">
                   {{#each beer.comments}} 
                   <div><a href="/user/{{this.user._id}}">{{this.user.firstName}} {{this.user.lastName}}</a></div>
@@ -94,21 +77,10 @@
                   <br>
                   {{/each}}
                 </div>
-            {{!-- <li class="common-activity-item">
-              <div class="desc">This is the best beer out there. The sour taste is for sure an aquired taste, but I find it delicious and strong enough to just sip.</div>
-              <div class="user-name">By: User Name</div>
-            </li>
-            <li class="common-activity-item">
-              <div class="desc">This is the best beer out there. The sour taste is for sure an aquired taste, but I find it delicious and strong enough to just sip.</div>
-              <div class="user-name">By: User Name</div>
-            </li> --}}
+              </li>
           </ul>
-          <div class="page-turner">
-            <span class="btn pre"> < </span>
-            <span>1</span>
-            <span class="btn next"> > </span>
-          </div>
-          <form id="review-form" action="/beers/beersList/{{beer._id}}/comment" method="POST">
+ 
+          <form id="comment-form" action="/beers/beersList/{{beer._id}}/comment" method="POST">
             <label for="comment">Add a Comment:</label><br>
             <textarea id="comment" name="comment"></textarea><br>
             <input type="submit" value="Submit">
@@ -122,7 +94,7 @@
           </div>
           <form id="review-form" action="/beers/beersList/{{beer._id}}/review" method="POST">
             <label for="rating">Rating:</label><br>
-            <input type="number" id="rating" name="rating" step="0.1" min="0", max="5"><br>
+            <input type="number" id="rating" name="rating" step="0.1" min="0" max="5"><br>
             <label for="review">Review:</label><br>
             <textarea id="review" name="review"></textarea><br>
             <input type="submit" value="Submit">
@@ -149,7 +121,6 @@
     </div>
   </div>
    
-</div>
 
 
 <script src="/public/js/basic_ajax.js"></script>

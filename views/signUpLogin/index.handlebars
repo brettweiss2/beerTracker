@@ -16,8 +16,8 @@
 </script>
     <header>
         <div class="topnav">
-            <img id="logo" src="../../public/assets/beer logo.png">
-            <a id= "websiteName"href="/">Beer Tracker</a>
+            <img id="logo" alt="logo" src="../../public/assets/beerLogo.png">
+            <a id= "websiteName" href="/">Beer Tracker</a>
                 <div class="signUpLoginNav">
             </div>
         </div>
@@ -32,12 +32,12 @@
 		<form action="/signUplogin/signUp" method = 'POST' id = 'signUp_form'>
 			<h1>Create Account</h1>
 			<input type="email" name='email' placeholder="Email" />
-			<input type="text" name='password'placeholder="Password" />
+			<input type="text" name='password' placeholder="Password" />
 			<input type="text" name='firstName' placeholder="First Name" />
 			<input type="text" name='lastName' placeholder="Last Name" />
 			<input type="text" name='city' placeholder="City" />
 			<input type="text" name='state' placeholder="State" />
-			<input type="text" name='country'placeholder="Country" />
+			<input type="text" name='country' placeholder="Country" />
 			<button type='submit'>Sign Up</button>
                  {{#if hasError}}
                   <ul>
@@ -57,7 +57,7 @@
 
 			<span>or use your account</span>
 			<input type="email" name = 'email' placeholder="Email" />
-			<input type="text" name = 'password'placeholder="Password" />
+			<input type="text" name = 'password' placeholder="Password" />
                  {{#if hasErrors}}
                   <ul>
                     {{#each errors}}

@@ -7,8 +7,8 @@
 
     <header>
         <div class="topnav">
-            <img id="logo" src="../../public/assets/beer logo.png">
-            <a id= "websiteName"href="/">Beer Tracker</a>
+            <img id="logo" alt="logo" src="../../public/assets/beerLogo.png">
+            <a id= "websiteName" href="/">Beer Tracker</a>
                 <div class="signUpLoginNav">
                  <a href="/dashBoard">DashBoard</a>
                 <a href="/signUpLogin/logout">Logout</a>
@@ -61,7 +61,9 @@
             {{/if}}
 
             {{#if HasSearch_error}}
+            <li>
               <div>{{search_error}}</div>
+            </li>
             {{/if}}
 
             {{#each beers}}
@@ -88,11 +90,7 @@
             </li>
             {{/each}}
           </ul>
-          <div class="page-turner">
-            <span class="btn pre"> < </span>
-            <span>1</span>
-            <span class="btn next"> > </span>
-          </div>
+ 
         </div>
       </div>
       <div class="beer-content-common beersList-right">

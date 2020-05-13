@@ -744,7 +744,6 @@ body, html
         0 10px 10px rgba(0,0,0,0.22);
     padding: 30px;
     box-sizing: border-box;
-    font-size: 11px;
   }
 
   .beer-item-box {
@@ -938,4 +937,8 @@ body, html
 }
 ::-webkit-scrollbar-thumb:window-inactive {
 	background: rgba(128,128,128,0.4); 
+}
+
+#search_error {
+  margin-left: 1vw;
 }

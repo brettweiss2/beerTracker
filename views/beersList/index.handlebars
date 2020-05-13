@@ -7,8 +7,8 @@
 
 <header>
     <div class="topnav">
-        <img id="logo" src="../../public/assets/beer logo.png">
-        <a id= "websiteName"href="/">Beer Tracker</a>
+        <img id="logo" alt="logo" src="../../public/assets/beerLogo.png">
+        <a id= "websiteName" href="/">Beer Tracker</a>
             <div class="signUpLoginNav">
             <a href="/signUpLogin">Sign Up or Login</a>
         </div>
@@ -60,7 +60,9 @@
             {{/if}}
 
             {{#if HasSearch_error}}
-              <div>{{search_error}}</div>
+            <li>
+              <div id="search_error">{{search_error}}</div>
+            </li>
             {{/if}}
 
             {{#each beers}}

@@ -35,8 +35,8 @@
 
 <header>
     <div class="topnav">
-        <img id="logo" src="../../public/assets/beer logo.png">
-        <a id= "websiteName"href="/">Beer Tracker</a>
+        <img id="logo" alt="logo" src="../../public/assets/beerLogo.png">
+        <a id= "websiteName" href="/">Beer Tracker</a>
             <div class="signUpLoginNav">
             <a href="/beers/beersList">Beers</a>
             <a href="/signUpLogin">Sign Up or Login</a>
@@ -58,11 +58,7 @@
             <li>ABV: {{beer.abv}}</li>
             <li>Malt: {{beer.malt}}</li>
             <li>Hops: {{beer.hops}}</li>
-            <li class="taste-profile">
-              <label>Notes:&nbsp;</label>
-              <p>
-                {{beer.notes}}</li>
-              </p>
+            <li class="taste-profile"> <label>Notes:&nbsp;</label>{{beer.notes}}</li>
           </ul>
         </div>
         <div class="recent-activity-list">
@@ -73,20 +69,17 @@
           </div>
           <div class="top-title strong">Comments</div>
           <ul>
-                <div class="col-sm-12 col-md-6" id="reviews-area">
-                  {{#each beer.comments}}
-                  <div><a href="/user/{{this.user._id}}">{{this.user.firstName}} {{this.user.lastName}}</a></div>
-                  <div>{{this.content}}</div> 
-                  <div class="timestamp">{{this.date}}</div>
-                  <br>
-                  {{/each}}
-                </div>
+               <li> 
+                  <div class="col-sm-12 col-md-6" id="reviews-area">
+                    {{#each beer.comments}}
+                    <div><a href="/user/{{this.user._id}}">{{this.user.firstName}} {{this.user.lastName}}</a></div>
+                    <div>{{this.content}}</div> 
+                    <div class="timestamp">{{this.date}}</div>
+                    <br>
+                    {{/each}}
+                  </div>
+                </li>
           </ul>
-          <div class="page-turner">
-            <span class="btn pre"> < </span>
-            <span>1</span>
-            <span class="btn next"> > </span>
-          </div>
         </div>
       </div>
       <div class="beerPage-right">
@@ -110,7 +103,4 @@
       </div>
     </div>
   </div>
-   
-</div>
-
 <script src="/public/js/basic_ajax.js"></script>
