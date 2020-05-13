@@ -174,16 +174,19 @@ router.get('/beersList/:id', async (req, res) =>{
 		}
 
 		const similar = await getSimilarBeers(req.params.id);
+		let rating = await reviewData.getBeerAvgRating(req.params.id);
+		const hasRating = !(rating === -1);
+		rating = rating.toFixed(1);
 
 		if(!req.session.user)
-			res.render('beerPage/index',{beer: beer, similar: similar});
+			res.render('beerPage/index',{beer: beer, similar: similar, hasRating: hasRating, rating: rating});
 		else {
 			const currUser = await userData.getUser(req.session.user.id);
 			let isFavorite = false;
 			for (let i = 0; i < currUser.favoriteBeers.length; i++) {
 				if (currUser.favoriteBeers[i] === req.params.id) isFavorite = true;
 			}
-			res.render('beerPage/indexLogged',{beer: beer, similar: similar, isFavorite: isFavorite});
+			res.render('beerPage/indexLogged',{beer: beer, similar: similar, isFavorite: isFavorite, hasRating: hasRating, rating: rating});
 		}
     } catch(e){
        res.status(404).json({ error: e });
@@ -193,7 +196,7 @@ router.get('/beersList/:id', async (req, res) =>{
 router.post('/beersList/:id/review', async (req, res) =>{
 	try {
 		if(!req.session.user)
-			res.redirect('/beers/beersList/' + req.params.id);
+			res.status(401).redirect('/beers/beersList/' + req.params.id);
 		else {
 			const data = req.body;
 
@@ -218,7 +221,7 @@ router.post('/beersList/:id/review', async (req, res) =>{
 router.post('/beersList/:id/comment', async (req, res) =>{
 	try {
 		if(!req.session.user)
-			res.redirect('/beers/beersList/' + req.params.id);
+			res.status(401).redirect('/beers/beersList/' + req.params.id);
 		else {
 			const data = req.body;
 
@@ -239,7 +242,7 @@ router.post('/beersList/:id/comment', async (req, res) =>{
 router.post('/beersList/:id/favorite', async (req, res) =>{
 	try {
         if(!req.session.user)
-            res.redirect('/beers/beersList/' + req.params.id);
+            res.status(401).redirect('/beers/beersList/' + req.params.id);
         else {
             const user = await userData.getUser(req.session.user.id);
             let favorites = user.favoriteBeers;
@@ -257,7 +260,7 @@ router.post('/beersList/:id/favorite', async (req, res) =>{
 router.post('/beersList/:id/unfavorite', async (req, res) =>{
 	try {
         if(!req.session.user)
-            res.redirect('/beers/beersList/' + req.params.id);
+            res.status(401).redirect('/beers/beersList/' + req.params.id);
         else {
             const user = await userData.getUser(req.session.user.id);
             let favorites = user.favoriteBeers;

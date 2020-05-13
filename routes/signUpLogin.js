@@ -9,7 +9,7 @@ const xss = require('xss');
 router.get('/', async(req,res) => {
 	if(!req.session.user){
 		res.render('signUpLogin/index')
-	}else(res.redirect('/dashBoard'))
+	}else(res.status(401).redirect('/dashBoard'))
 });
 
 router.post('/login', async (req,res) => {

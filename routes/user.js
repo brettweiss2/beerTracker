@@ -74,7 +74,7 @@ router.get('/:id', async(req,res) => {
 router.post('/:id/follow', async (req, res) =>{
     try {
         if(!req.session.user)
-            res.redirect('/user/' + req.params.id);
+            res.status(401).redirect('/user/' + req.params.id);
         else {
             const user = await userData.getUser(req.session.user.id);
             let following = user.following;
@@ -92,7 +92,7 @@ router.post('/:id/follow', async (req, res) =>{
 router.post('/:id/unfollow', async (req, res) =>{
     try {
         if(!req.session.user)
-            res.redirect('/user/' + req.params.id);
+            res.status(401).redirect('/user/' + req.params.id);
         else {
             const user = await userData.getUser(req.session.user.id);
             let following = user.following;

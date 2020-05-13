@@ -7,7 +7,7 @@ const reviewData = data.reviews;
 
 router.get('/', async(req,res) => {
     if(!req.session.user){
-        res.render('home/index');
+        res.status(401).render('home/index');
     } else {
         const user = await userData.getUser(req.session.user.id);
 

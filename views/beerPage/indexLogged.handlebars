@@ -60,7 +60,10 @@
             <li><h1 class="beer-attr">ABV: {{beer.abv}}</h1></li>
             <li><h1 class="beer-attr">Malt: {{beer.malt}}</h1></li>
             <li><h1 class="beer-attr">Hops: {{beer.hops}}</h1></li>
-            <li><h2 class="beer-notes">Notes: {{beer.notes}}</li></h2>
+            <li><h2 class="beer-notes">Notes: {{beer.notes}}</h2></li>
+            {{#if hasRating}}
+            <li><h1 class="beer-attr">Average Rating: {{rating}}</h1></li>
+            {{/if}}
           </ul>
           {{#if isFavorite}}
           <form method="POST" action="/beers/beersList/{{beer._id}}/unfavorite">
@@ -88,7 +91,7 @@
           </ul>
           <form id="comment-form" action="/beers/beersList/{{beer._id}}/comment" method="POST">
             <label for="comment">Add a Comment:</label><br>
-            <textarea id="comment" name="comment"></textarea><br>
+            <textarea id="comment" name="comment" required></textarea><br>
             <input type="submit" value="Submit">
           </form>
         </div>
@@ -100,9 +103,9 @@
           </div>
           <form id="review-form" action="/beers/beersList/{{beer._id}}/review" method="POST">
             <label for="rating">Rating:</label><br>
-            <input type="number" id="rating" name="rating" step="0.1" min="0" max="5"><br>
+            <input type="number" id="rating" name="rating" step="0.1" min="0" max="5" required><br>
             <label for="review">Review:</label><br>
-            <textarea id="review" name="review"></textarea><br>
+            <textarea id="review" name="review" required></textarea><br>
             <input type="submit" value="Submit">
           </form>
         </div>

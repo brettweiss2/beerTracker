@@ -134,5 +134,27 @@ module.exports = {
         if (updatedInfo.modifiedCount === 0) throw new Error("Could not update review successfully");
 
         return await this.getReview(id);
+    },
+
+    /**
+     * Gets the average rating for a beer
+     * @param {string} beerId the string ID of the beer
+     * @returns the average rating for the beer of beerId (-1 if no reviews of beer)
+     */
+    async getBeerAvgRating(beerId) {
+        const allReviews = await this.getAllReviews();
+        let sum = 0;
+        let count = 0;
+
+        for (let i = 0; i < allReviews.length; i++) {
+            if (allReviews[i].beer == beerId) {
+                count ++;
+                sum += allReviews[i].rating;
+            }
+        }
+
+        if (count === 0) return -1;
+
+        return sum/count;
     }
 };
