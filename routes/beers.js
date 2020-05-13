@@ -63,6 +63,43 @@ async function getRecommendedBeers(userId) {
 	return [...set];
 }
 
+async function getSimilarBeers(beerId) {
+	const beer = await beerData.getBeer(beerId);
+	let allBeers = await beerData.getAllBeers();
+	allBeers = allBeers.filter(a => a._id.toString() !== beerId);
+
+	let scores = [];
+
+	for (let i = 0; i < allBeers.length; i++) {
+		scores.push({beer: allBeers[i], score: 0});
+	}
+
+	for (let j = 0; j < scores.length; j++) {
+		if (beer.type === scores[j].beer.type) {
+			scores[j].score += 3;
+		}
+		for (let x = 0; x < beer.hops.length; x++) {
+			for (let y = 0; y < scores[j].beer.hops.length; y++) {
+				if (beer.hops[x] === scores[j].beer.hops[y])
+					scores[j].score += 1;
+			}
+		}
+		for (let x = 0; x < beer.malt.length; x++) {
+			for (let y = 0; y < scores[j].beer.malt.length; y++) {
+				if (beer.malt[x] === scores[j].beer.malt[y])
+					scores[j].score += 1;
+			}
+		}
+	}
+
+	scores.sort((a,b)=>(a.score < b.score) ? 1 : -1);
+	const similar = scores.slice(0,4);
+	
+	const set = new Set(similar);
+
+	return [...set];
+}
+
 router.post('/beersList/search',async (req, res) =>{
 	search = req.body;
 	beerName = xss(search.beer_search)
@@ -136,10 +173,12 @@ router.get('/beersList/:id', async (req, res) =>{
 			beer.comments[i].user = user;
 		}
 
+		const similar = await getSimilarBeers(req.params.id);
+
 		if(!req.session.user)
-			res.render('beerPage/index',{beer: beer});
+			res.render('beerPage/index',{beer: beer, similar: similar});
 		else
-			res.render('beerPage/indexLogged',{beer: beer});
+			res.render('beerPage/indexLogged',{beer: beer, similar: similar});
     } catch(e){
        res.status(404).json({ error: e });
     }

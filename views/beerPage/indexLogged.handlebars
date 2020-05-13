@@ -135,18 +135,12 @@
           </div>
           <div class="choice-list">
             <ul>
+              {{#each similar}}
               <li class="beer-item-box clearfix">
-                <div class="beer-filed strong">Beer Name</div>
-                <div class="beer-filed">Brewing Company</div>
+                <div class="beer-filed strong"><a href="/beers/beersList/{{this.beer._id}}">{{this.beer.name}}</a></div>
+                <div class="beer-filed">{{this.beer.type}}</div>
               </li>
-              <li class="beer-item-box clearfix">
-                <div class="beer-filed strong">Beer Name</div>
-                <div class="beer-filed">Brewing Company</div>
-              </li>
-              <li class="beer-item-box clearfix">
-                <div class="beer-filed strong">Beer Name</div>
-                <div class="beer-filed">Brewing Company</div>
-              </li>
+              {{/each}}
             </ul>
           </div>
 
