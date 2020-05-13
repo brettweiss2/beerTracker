@@ -101,7 +101,7 @@ body, html
     top: 50%;
     transform: translateY(-50%);
     right: 25px;
-    color: #fff;
+    color: rgb(199, 120, 120);
     font-size: 25px;
     padding: 0;
     border: none;

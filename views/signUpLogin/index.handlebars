@@ -16,7 +16,7 @@
 </script>
     <header>
         <div class="topnav">
-            <img id="logo" src="../../public/assets/beer logo.png">
+            <img id="logo" src="../../public/assets/beer logo.png" alt="beerLogo">
             <a id= "websiteName"href="/">Beer Tracker</a>
                 <div class="signUpLoginNav">
             </div>
@@ -31,13 +31,33 @@
 	<div class="form-container sign-up-container">
 		<form action="/signUplogin/signUp" method = 'POST' id = 'signUp_form'>
 			<h1>Create Account</h1>
-			<input type="email" name='email' placeholder="Email" />
-			<input type="text" name='password'placeholder="Password" />
-			<input type="text" name='firstName' placeholder="First Name" />
-			<input type="text" name='lastName' placeholder="Last Name" />
-			<input type="text" name='city' placeholder="City" />
-			<input type="text" name='state' placeholder="State" />
-			<input type="text" name='country'placeholder="Country" />
+			<label for='email'>
+				<input type="email" id = 'email' name='email' placeholder="Email" />
+			</label>
+			<label for='password'>
+			<input type="text" id='password' name='password'placeholder="Password" />
+
+			</label>
+			<label for='firstName'>
+			<input type="text" id='firstName' name='firstName' placeholder="First Name" />
+			</label>
+			<label for='lastName'>
+			<input type="text" id='lastName' name='lastName' placeholder="Last Name" />
+
+			</label>
+			<label for='city'>
+			<input type="text" id='city' name='city' placeholder="City" />
+
+			</label>
+			<label for= 'city'>
+			<input type="text" id = 'city' name='state' placeholder="State" />
+
+			</label>
+			<label for = 'country'>
+			<input type="text" id='country' name='country'placeholder="Country" />
+
+			</label>
+
 			<button type='submit'>Sign Up</button>
                  {{#if hasError}}
                   <ul>
@@ -56,8 +76,13 @@
 			<h1>Sign in</h1>
 
 			<span>or use your account</span>
-			<input type="email" name = 'email' placeholder="Email" />
-			<input type="text" name = 'password'placeholder="Password" />
+			<label>
+				<input type="email" name = 'email' placeholder="Email" />
+			</label>
+			<label>
+				<input type="text" name = 'password'placeholder="Password" />
+			</label>
+			
                  {{#if hasErrors}}
                   <ul>
                     {{#each errors}}
