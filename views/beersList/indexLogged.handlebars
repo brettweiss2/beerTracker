@@ -12,7 +12,7 @@
                 <div class="signUpLoginNav">
                  <a href ="/beers/beerSubmission">Post a beer</a>
                  <a href="/dashBoard">DashBoard</a>
-                <a href="/signUpLogin/logout">logout</a>
+                <a href="/signUpLogin/logout">Logout</a>
             </div>
         </div>
     </header>
@@ -29,14 +29,14 @@
           <div class="search_box">
 
             <form action="/beers/beersList/search" method="POST">
-                <input type="text" name= 'beer_search' placeholder="Search for a Beer or Brand...">
+                <input type="text" name= 'beer_search' placeholder="Search for a Beer...">
                 <button type="submit" class="fas fa-search">Search</button>
             </form>
 
           </div>
         </div>
         <div class="beers-list-content">
-          <div class="result-desc">Search Results for <span class="strong">Beer Name/Brand</span></div>
+          <div class="result-desc">Search Results for <span class="strong">Beer</span></div>
           <ul>
             {{#if searchResult}}
               <li class="beer-item-box clearfix">
@@ -73,18 +73,18 @@
                   <a href = "/beers/beersList/{{_id}}">{{name}}</a>
                 </div>
                 <div class="beer-filed">
-                  type: {{type}}
+                  Type: {{type}}
                 </div>
                 <div class="beer-filed">
-                  abv: {{abv}}
+                  ABV: {{abv}}
                 </div>
               </div>
               <div class="beer-right">
                 <div class="beer-filed">
-                  malts: {{malt}}
+                  Malt: {{malt}}
                 </div>
                 <div class="beer-filed">
-                  hops: {{hops}}
+                  Hops: {{hops}}
                 </div>
               </div>
             </li>
@@ -99,36 +99,17 @@
       </div>
       <div class="beer-content-common beersList-right">
         <div class="top-title strong">
-          Developer‘s Choice
+          Your Recommended Beers
         </div>
         <div class="choice-list">
           <ul>
+            {{#each recommended}}
             <li class="beer-item-box clearfix">
-              <div class="beer-filed strong">Beer Name</div>
-              <div class="beer-filed">Brewing Company</div>
+              <div class="beer-filed strong"><a href="/beers/beersList/{{this.beer._id}}">{{this.beer.name}}</a></div>
+              <div class="beer-filed">{{this.beer.type}}</div>
             </li>
-            <li class="beer-item-box clearfix">
-              <div class="beer-filed strong">Beer Name</div>
-              <div class="beer-filed">Brewing Company</div>
-            </li>
-            <li class="beer-item-box clearfix">
-              <div class="beer-filed strong">Beer Name</div>
-              <div class="beer-filed">Brewing Company</div>
-            </li>
-            <li class="beer-item-box clearfix">
-              <div class="beer-filed strong">Beer Name</div>
-              <div class="beer-filed">Brewing Company</div>
-            </li>
-            <li class="beer-item-box clearfix">
-              <div class="beer-filed strong">Beer Name</div>
-              <div class="beer-filed">Brewing Company</div>
-            </li>
-            <li class="beer-item-box clearfix">
-              <div class="beer-filed strong">Beer Name</div>
-              <div class="beer-filed">Brewing Company</div>
-            </li>
+            {{/each}}
           </ul>
-
         </div>
       </div>
     </div>

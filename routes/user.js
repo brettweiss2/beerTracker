@@ -55,7 +55,7 @@ router.get('/:id', async(req,res) => {
         }
 
     } catch (e) {
-        res.status(404).json({ message: e});//'user not found' });  
+        res.status(404).json({ message: e}); 
     }
 });
 

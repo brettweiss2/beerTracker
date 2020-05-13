@@ -79,7 +79,7 @@
           <ul>
             {{#each favoriteBeers}}
             <li class="beer-item-box clearfix">
-              <div class="beer-filed strong">{{this.name}}</div>
+              <div class="beer-filed strong"><a href="/beers/beersList/{{this._id}}">{{this.name}}</a></div>
               <div class="beer-filed">{{this.type}}</div>
             </li>
             {{/each}}

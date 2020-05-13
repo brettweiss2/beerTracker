@@ -1,6 +1,4 @@
-
-
-<script>
+<!--<script>
 
   window.onload=function(){
     
@@ -30,8 +28,7 @@
       }
 		});
   }
-
-</script>
+</script>-->
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
@@ -59,25 +56,20 @@
       <div class="beer-content-common userProfile-left">
         <div class="common-info beer-info">
           <ul>
-            <li class="strong">name: {{beer.name}}</li>
-            <li>type: {{beer.type}}</li>
-            <li>abv: {{beer.abv}}</li>
-            <li>malts: {{beer.malt}}</li>
-            <li>hops: {{beer.hops}}</li>
+            <li class="strong">{{beer.name}}</li>
+            <li>Type: {{beer.type}}</li>
+            <li>ABV: {{beer.abv}}</li>
+            <li>Malt: {{beer.malt}}</li>
+            <li>Hops: {{beer.hops}}</li>
             <li class="taste-profile">
-              <label>Taste Profile:&nbsp;</label>
+              <label>Notes:&nbsp;</label>
               <p>
                 {{beer.notes}}</li>
               </p>
           </ul>
         </div>
-              <form id = 'new-review-form'>
-                  <input type = 'number' id = 'new-review-rate'>
-                  <textarea name="comment" id="new-review" rows="5"></textarea>
-                  <input type='submit' value='Submit a new review' />
-              </form>
         <div class="recent-activity-list">
-          <div class="activity-list-title strong">Leave A Review</div>
+          <!--<div class="activity-list-title strong">Leave a Comment</div>
           <div class="leave-review-box">
             <div class="text-content">
               <textarea name="" id="" rows="5"></textarea>
@@ -90,23 +82,19 @@
                   <span class="arrow-bottom" id="arrowDown"></span>
                 </div>
               </div>
-              <button class="submit-btn">Submit Review</button>
+              <button class="submit-btn">Submit</button>
             </div>
-          </div>
-          <div class="reviews-title strong">Reviews</div>
+          </div>-->
+          <div class="top-title strong">Comments</div>
           <ul>
                 <div class="col-sm-12 col-md-6" id="reviews-area">
-
-                    {{#each reviews}} 
-                    <div>{{rating }}</div> 
-                    <div>{{comment}}</div>
-                    
-                    
-                    {{/each}}
-
-                    </div>
-
-
+                  {{#each beer.comments}} 
+                  <div><a href="/user/{{this.user._id}}">{{this.user.firstName}} {{this.user.lastName}}</a></div>
+                  <div>{{this.content}}</div> 
+                  <div class="timestamp">{{this.date}}</div>
+                  <br>
+                  {{/each}}
+                </div>
             {{!-- <li class="common-activity-item">
               <div class="desc">This is the best beer out there. The sour taste is for sure an aquired taste, but I find it delicious and strong enough to just sip.</div>
               <div class="user-name">By: User Name</div>
@@ -121,29 +109,25 @@
             <span>1</span>
             <span class="btn next"> > </span>
           </div>
+          <form id="review-form" action="/beers/beersList/{{beer._id}}/comment" method="POST">
+            <label for="comment">Add a Comment:</label><br>
+            <textarea id="comment" name="comment"></textarea><br>
+            <input type="submit" value="Submit">
+          </form>
         </div>
       </div>
       <div class="beerPage-right">
         <div class="developers-choice">
           <div class="top-title strong">
-            Developer‘s Choice
+            Review this Beer
           </div>
-          <div class="choice-list">
-            <ul>
-              <li class="beer-item-box clearfix">
-                <div class="beer-filed strong">Beer Name</div>
-                <div class="beer-filed">Brewing Company</div>
-              </li>
-              <li class="beer-item-box clearfix">
-                <div class="beer-filed strong">Beer Name</div>
-                <div class="beer-filed">Brewing Company</div>
-              </li>
-              <li class="beer-item-box clearfix">
-                <div class="beer-filed strong">Beer Name</div>
-                <div class="beer-filed">Brewing Company</div>
-              </li>
-            </ul>
-          </div>
+          <form id="review-form" action="/beers/beersList/{{beer._id}}/review" method="POST">
+            <label for="rating">Rating:</label><br>
+            <input type="number" id="rating" name="rating" step="0.1" min="0", max="5"><br>
+            <label for="review">Review:</label><br>
+            <textarea id="review" name="review"></textarea><br>
+            <input type="submit" value="Submit">
+          </form>
         </div>
         <div class="similar-beer">
           <div class="top-title strong">
